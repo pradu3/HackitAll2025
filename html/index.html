@@ -1,0 +1,3411 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provocarea Rotables - HackITAll 2025</title>
+    <link rel="stylesheet" href="css/styles.css?v=1763282225">
+    <link rel="stylesheet" href="vendor/css/sap-horizon-variables.css">
+    <!-- Prism.js for syntax highlighting (GitHub-style) -->
+    <link rel="stylesheet" href="vendor/css/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="vendor/css/prism-toolbar.min.css">
+    <script src="vendor/js/lucide.min.js"></script>
+    <style>
+        /* Enhanced Section Styling */
+        .section {
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .section:not(.section-home):not(#resources) {
+            border-bottom: 3px solid #e5e7eb;
+        }
+
+        /* Section divider decoration */
+        .section:not(.section-home)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #0070f2, #00aaff);
+            border-radius: 2px;
+        }
+
+        /* Enhanced section titles */
+        .section-title {
+            font-size: 2.5rem !important;
+            font-weight: 800 !important;
+            color: #1d2433 !important;
+            margin-bottom: 2rem !important;
+            text-align: center;
+            position: relative;
+            padding-top: 1.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #0070f2, #00aaff);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        .section-home .section-title {
+            color: white !important;
+        }
+
+        .section-home .section-title::after {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Section number badges - alternating colors */
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #0070f2, #00aaff);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            box-shadow: 0 4px 15px rgba(0, 112, 242, 0.35);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Red accent for specific sections */
+        .section-number.red {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.35);
+        }
+
+        .section-number.red::before {
+            border-color: rgba(220, 38, 38, 0.2);
+        }
+
+        .section-number::before {
+            content: '';
+            position: absolute;
+            width: 72px;
+            height: 72px;
+            border: 3px solid rgba(0, 112, 242, 0.2);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Red accent utilities */
+        .text-red {
+            color: #dc2626 !important;
+        }
+
+        .bg-red-light {
+            background: #fef2f2 !important;
+        }
+
+        .border-red {
+            border-color: #dc2626 !important;
+        }
+
+        /* Red accent cards */
+        .feature-card.red-accent {
+            border-left: 4px solid #dc2626;
+        }
+
+        .feature-card.red-accent .feature-icon {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+        }
+
+        /* Red warning boxes */
+        .warning-box.red {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border-left: 5px solid #dc2626;
+        }
+
+        .warning-box.red h4 {
+            color: #dc2626;
+        }
+
+        /* Red section title underline for specific sections */
+        .section-title.red-underline::after {
+            background: linear-gradient(90deg, #dc2626, #ef4444);
+        }
+
+        /* Red divider for specific sections */
+        .section.red-top::before {
+            background: linear-gradient(90deg, #dc2626, #ef4444);
+        }
+
+        /* Red tab accent */
+        .carousel-tab.red-active.active {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            border-color: #dc2626;
+        }
+
+        /* Red floating nav dot for important sections */
+        .floating-nav-item.red-dot .floating-nav-dot {
+            background: #dc2626;
+        }
+
+        .floating-nav-item.red-dot.active .floating-nav-dot {
+            background: #dc2626;
+            box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.2);
+        }
+
+        /* Red highlight box */
+        .highlight-red {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-red h4 {
+            color: #dc2626;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Red stat card */
+        .stat-card.red {
+            border-top: 4px solid #dc2626;
+        }
+
+        .stat-card.red .stat-number {
+            color: #dc2626;
+        }
+
+        /* Red CTA button */
+        .cta-button.red {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+        }
+
+        .cta-button.red:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Red tip-box for important strategies */
+        .tip-box.red {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border-left: 5px solid #dc2626;
+        }
+
+        .tip-box.red strong {
+            color: #dc2626;
+        }
+
+        /* Alternating section backgrounds */
+        .section:nth-of-type(even):not(.section-home) {
+            background: #f8fafc;
+        }
+
+        .section:nth-of-type(odd):not(.section-home) {
+            background: #ffffff;
+        }
+
+        /* Hero background image */
+        .section-home {
+            position: relative;
+            background: linear-gradient(135deg, rgba(0, 112, 242, 0.85) 0%, rgba(102, 126, 234, 0.85) 100%),
+                        url('img/airplane-hero.jpg') center/cover;
+            color: white;
+        }
+        
+        .section-home .hero-title,
+        .section-home .hero-description {
+            color: white;
+        }
+        
+        .section-home .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-home .cta-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Section accent images */
+        .section-accent {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-accent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .section-accent .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #challenge::before {
+            background-image: url('img/airplane-cockpit.jpg');
+        }
+        
+        #network::before {
+            background-image: url('img/logistics-network.jpg');
+        }
+        
+        #costs::before {
+            background-image: url('img/analytics-dashboard.jpg');
+        }
+        
+        /* GitHub-style Code Formatting */
+
+        /* Inline code - GitHub style */
+        code {
+            font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+            font-size: 85%;
+            background-color: rgba(175, 184, 193, 0.2);
+            padding: 0.2em 0.4em;
+            border-radius: 6px;
+            color: #1f2328;
+            word-break: break-word;
+        }
+
+        /* Code inside links */
+        a code {
+            color: #0969da;
+        }
+
+        a:hover code {
+            text-decoration: underline;
+        }
+
+        /* Code block container with copy button */
+        .code-block {
+            position: relative;
+            margin: 1rem 0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .code-block pre {
+            margin: 0;
+            border-radius: 6px;
+            padding: 16px !important;
+            overflow-x: auto;
+        }
+
+        .code-block pre[class*="language-"] {
+            background: #161b22;
+            border: 1px solid #30363d;
+        }
+
+        .code-block code[class*="language-"] {
+            font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+            font-size: 13px;
+            line-height: 1.45;
+            background: transparent;
+            padding: 0;
+            color: #e6edf3;
+        }
+
+        /* Copy button styling - GitHub style */
+        .copy-button {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 4px 8px;
+            background: #21262d;
+            color: #7d8590;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .copy-button:hover {
+            background: #30363d;
+            color: #e6edf3;
+            border-color: #8b949e;
+        }
+
+        .copy-button.copied {
+            background: #238636;
+            border-color: #238636;
+            color: white;
+        }
+
+        .copy-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Language label - GitHub style */
+        .code-block::before {
+            content: attr(data-language);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 8px 16px;
+            background: #161b22;
+            color: #7d8590;
+            font-size: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #30363d;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .code-block pre {
+            padding-top: 48px !important;
+        }
+
+        /* Formula and code boxes - GitHub style */
+        .formula-box {
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-left: 4px solid #0969da;
+            padding: 16px;
+            margin: 1rem 0;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+
+        .formula-box code {
+            background: #ffffff;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+            color: #1f2328;
+            font-size: 85%;
+            border: 1px solid #d0d7de;
+            white-space: nowrap;
+        }
+
+        /* URL styling - make them look like GitHub links with code */
+        .url-code {
+            font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+            font-size: 85%;
+            background-color: rgba(175, 184, 193, 0.2);
+            padding: 0.2em 0.4em;
+            border-radius: 6px;
+            color: #0969da;
+            word-break: break-all;
+        }
+
+        /* Keyboard shortcuts - GitHub style */
+        kbd {
+            display: inline-block;
+            padding: 3px 5px;
+            font: 11px ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+            line-height: 10px;
+            color: #1f2328;
+            vertical-align: middle;
+            background-color: #f6f8fa;
+            border: solid 1px rgba(175, 184, 193, 0.2);
+            border-bottom-color: rgba(175, 184, 193, 0.4);
+            border-radius: 6px;
+            box-shadow: inset 0 -1px 0 rgba(175, 184, 193, 0.4);
+        }
+
+        /* File paths styling */
+        .file-path {
+            font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+            font-size: 85%;
+            background-color: rgba(175, 184, 193, 0.2);
+            padding: 0.2em 0.4em;
+            border-radius: 6px;
+            color: #1f2328;
+        }
+
+
+        /* Override Prism toolbar */
+        div.code-toolbar > .toolbar {
+            opacity: 1;
+            right: 0.5rem;
+            top: 0.5rem;
+        }
+
+        div.code-toolbar > .toolbar > .toolbar-item > button {
+            background: #3d3d3d;
+            color: #e2e8f0;
+            border-radius: 4px;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.75rem;
+            box-shadow: none;
+        }
+
+        div.code-toolbar > .toolbar > .toolbar-item > button:hover {
+            background: #4d4d4d;
+        }
+
+        /* API endpoint styling */
+        .api-endpoint {
+            background: #f6f8fa;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+            border-left: 4px solid #0070f2;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .api-method {
+            background: #0070f2;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .api-method.get {
+            background: #28a745;
+        }
+
+        .api-method.post {
+            background: #0070f2;
+        }
+
+        .api-method.put {
+            background: #fd7e14;
+        }
+
+        .api-method.delete {
+            background: #dc3545;
+        }
+
+        .api-path {
+            color: #24292f;
+            font-weight: 500;
+        }
+
+        /* Learning Resources Section */
+        .learning-resources {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .resource-category {
+            background: #f8f9fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            border-left: 4px solid #0070f2;
+        }
+
+        .resource-category h4 {
+            margin: 0 0 0.5rem 0;
+            color: #1d2433;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resource-category > p {
+            margin: 0 0 1rem 0;
+            color: #586069;
+            font-size: 0.9rem;
+        }
+
+        .resource-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .resource-links li {
+            padding: 0.5rem 0.75rem;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #e1e4e8;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .resource-links li:hover {
+            border-color: #0070f2;
+            box-shadow: 0 2px 4px rgba(0, 112, 242, 0.1);
+        }
+
+        .resource-links a {
+            color: #0070f2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .resource-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Definitions Table */
+        .definitions-table {
+            overflow-x: auto;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .styled-table thead tr {
+            background: #0070f2;
+            color: white;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 1rem 1.25rem;
+        }
+
+        .styled-table th {
+            font-weight: 600;
+        }
+
+        .styled-table th:first-child {
+            width: 180px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #e1e4e8;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background: #f8f9fa;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: none;
+        }
+
+        .styled-table tbody tr:hover {
+            background: #f0f4ff;
+        }
+
+        /* Carousel Styles */
+        .carousel-wrapper {
+            position: relative;
+            margin: 1.5rem 0;
+            padding: 0 60px; /* Space for side arrows */
+        }
+
+        .carousel-container {
+            position: relative;
+            background: #fafbfc;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .carousel-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.75rem;
+        }
+
+        .carousel-tab {
+            padding: 0.75rem 1.25rem;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #4b5563;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .carousel-tab:hover {
+            background: #f0f4ff;
+            color: #1f2937;
+            border-color: #0070f2;
+        }
+
+        .carousel-tab.active {
+            background: #0070f2;
+            color: white;
+            border-color: #0070f2;
+        }
+
+        .carousel-tab .tab-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        .carousel-content {
+            position: relative;
+            min-height: 200px;
+        }
+
+        .carousel-slide {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .carousel-slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Carousel side arrows - positioned outside the container */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0070f2, #00aaff);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 112, 242, 0.4);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-arrow:hover:not(:disabled) {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 112, 242, 0.5);
+        }
+
+        .carousel-arrow:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .carousel-arrow.carousel-prev {
+            left: 0;
+        }
+
+        .carousel-arrow.carousel-next {
+            right: 0;
+        }
+
+        .carousel-arrow svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Bottom indicator */
+        .carousel-indicator {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0070f2;
+        }
+
+        /* Hide old nav style */
+        .carousel-nav {
+            display: none;
+        }
+
+        .carousel-nav-btn {
+            display: none;
+        }
+
+        .carousel-nav-btn:hover:not(:disabled) {
+            background: #0070f2;
+            color: white;
+            border-color: #0070f2;
+        }
+
+        .carousel-nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .carousel-indicator {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0070f2;
+            background: #e8f4fd;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .carousel-wrapper {
+                padding: 0 40px;
+            }
+
+            .carousel-container {
+                padding: 1rem;
+            }
+
+            .carousel-tabs {
+                gap: 0.25rem;
+            }
+
+            .carousel-tab {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+
+            .carousel-tab .tab-icon {
+                display: none;
+            }
+
+            .carousel-arrow {
+                width: 36px;
+                height: 36px;
+            }
+
+            .carousel-arrow svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-wrapper {
+                padding: 0 30px;
+            }
+
+            .carousel-arrow {
+                width: 28px;
+                height: 28px;
+            }
+
+            .carousel-arrow svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        /* FAQ Section Styles */
+        .faq-category-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .faq-category-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            color: #4b5563;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .faq-category-btn:hover {
+            border-color: #0070f2;
+            color: #0070f2;
+        }
+
+        .faq-category-btn.active {
+            background: linear-gradient(135deg, #0070f2, #00aaff);
+            color: white;
+            border-color: transparent;
+        }
+
+        .faq-category-btn.red-active.active {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+        }
+
+        .faq-category-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .faq-category-content {
+            display: none;
+        }
+
+        .faq-category-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .faq-category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #0070f2;
+        }
+
+        .faq-category-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0070f2, #00aaff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .faq-category-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .faq-category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1d2433;
+            margin: 0;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            background: #fafbfc;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-question h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1d2433;
+            margin: 0;
+            padding-right: 1rem;
+        }
+
+        .faq-toggle {
+            width: 20px;
+            height: 20px;
+            color: #0070f2;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 1rem 1.25rem;
+            color: #4b5563;
+            line-height: 1.7;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.9rem;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-answer p {
+            margin: 0 0 0.75rem 0;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-answer ul {
+            margin: 0.5rem 0 0.75rem 0;
+            padding-left: 1.25rem;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.35rem;
+        }
+
+        .faq-highlight {
+            background: #e8f4fd;
+            border-left: 4px solid #0070f2;
+            padding: 0.75rem 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 0.75rem 0;
+        }
+
+        .faq-warning {
+            background: #fef3cd;
+            border-left: 4px solid #f59e0b;
+            padding: 0.75rem 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 0.75rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .faq-category-nav {
+                gap: 0.35rem;
+            }
+
+            .faq-category-btn {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.8rem;
+            }
+
+            .faq-category-btn svg {
+                display: none;
+            }
+
+            .faq-category-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .faq-question h4 {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="sap-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="header-title">Provocarea Rotables</h1>
+                <p class="header-subtitle">HackITAll 2025 - Optimizare Logistică Aviație</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sap-nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#home" class="nav-logo">
+                    <img src="img/sap-logo.png" alt="SAP Logo" class="sap-logo-img">
+                </a>
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Acasă</a></li>
+                    <li><a href="#definitions" class="nav-link">Termeni</a></li>
+                    <li><a href="#challenge" class="nav-link">Provocarea</a></li>
+                    <li><a href="#network" class="nav-link">Rețeaua</a></li>
+                    <li><a href="#costs" class="nav-link">Costuri</a></li>
+                    <li><a href="#mechanics" class="nav-link">Mecanica</a></li>
+                    <li><a href="#api" class="nav-link">API</a></li>
+                    <li><a href="#getting-started" class="nav-link">Cum Începeți</a></li>
+                    <li><a href="#hints" class="nav-link">Hints</a></li>
+                    <li><a href="#scoring" class="nav-link">Scoring</a></li>
+                    <li><a href="#faq" class="nav-link nav-link-faq-highlight">FAQ</a></li>
+                    <li><a href="#resources" class="nav-link">Resurse</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Side Navigation -->
+    <nav class="floating-nav" id="floatingNav">
+        <a href="#home" class="floating-nav-item" data-section="home">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">Acasă</span>
+        </a>
+        <a href="#definitions" class="floating-nav-item" data-section="definitions">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">Termeni</span>
+        </a>
+        <a href="#challenge" class="floating-nav-item" data-section="challenge">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">Provocarea</span>
+        </a>
+        <a href="#network" class="floating-nav-item" data-section="network">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">Rețeaua</span>
+        </a>
+        <a href="#costs" class="floating-nav-item red-dot" data-section="costs">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">Costuri</span>
+        </a>
+        <a href="#mechanics" class="floating-nav-item" data-section="mechanics">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">Mecanica</span>
+        </a>
+        <a href="#api" class="floating-nav-item" data-section="api">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">API</span>
+        </a>
+        <a href="#getting-started" class="floating-nav-item" data-section="getting-started">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">Start</span>
+        </a>
+        <a href="#hints" class="floating-nav-item red-dot" data-section="hints">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">Hints</span>
+        </a>
+        <a href="#scoring" class="floating-nav-item" data-section="scoring">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">Scoring</span>
+        </a>
+        <a href="#faq" class="floating-nav-item floating-nav-faq-highlight" data-section="faq">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">FAQ</span>
+        </a>
+        <a href="#resources" class="floating-nav-item" data-section="resources">
+            <div class="floating-nav-dot"></div>
+            <span class="floating-nav-label">Resurse</span>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section section-home">
+            <div class="container">
+                <div class="hero">
+                    <div style="background: linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)), url('img/airplane-hero.jpg') center/cover; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h2 class="hero-title" style="color: #1d2433;">Provocarea Voastră: Optimizarea Logisticii Aeriene</h2>
+                        <p class="hero-description" style="color: #1d2433;">
+                            Gestionați kiturile de pasageri (rotables) pe o rețea hub-and-spoke de aeroporturi. <strong>Minimizați costurile totale</strong> asigurând în același timp disponibilitatea kiturilor pentru toți pasagerii și menținând stocurile la aeroporturile satelit.
+                        </p>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="target" class="lucide-icon"></i>
+                            </div>
+                            <h3>Optimizare Complexă</h3>
+                            <p>Balanțați costuri operaționale cu penalități pentru stocuri negative sau pasageri fără kituri</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="network" class="lucide-icon"></i>
+                            </div>
+                            <h3>Rețea Hub-Spoke</h3>
+                            <p>HUB1 central + aeroporturi outstation cu capacități și constrângeri diferite</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="clock" class="lucide-icon"></i>
+                            </div>
+                            <h3>Decizie în Timp Real</h3>
+                            <p>Fiecare oră contează - planificați 24h în avans, ajustați cu 1h înainte de decolare</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="trophy" class="lucide-icon"></i>
+                            </div>
+                            <h3>Competiție Live</h3>
+                            <p>Clasament actualizat în timp real - echipa cu cele mai mici costuri câștigă!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-box">
+                    <h3>Cifrele Cheie</h3>
+                    <div class="feature-grid" style="margin-top: 1rem;">
+                        <div class="feature-card">
+                            <h4 style="font-size: 2.5rem; margin: 0; color: #0070f2;">160+</h4>
+                            <p>Aeroporturi în rețea</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 style="font-size: 2.5rem; margin: 0; color: #0070f2;">447</h4>
+                            <p>Zboruri în schedule</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 style="font-size: 2.5rem; margin: 0; color: #0070f2;">4</h4>
+                            <p>Clase de kituri (First, Business, Premium, Economy)</p>
+                        </div>
+                        <div class="feature-card" style="border-top: 4px solid #dc2626;">
+                            <h4 style="font-size: 2.5rem; margin: 0; color: #dc2626;">720</h4>
+                            <p>Runde de joc (30 zile × 24 ore)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Definitions Section -->
+        <section id="definitions" class="section">
+            <div class="container">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Glosar de Termeni</h2>
+
+                <div class="vision-box">
+                    <h3>Termeni Cheie</h3>
+                    <p>Înainte de a începe, familiarizați-vă cu terminologia utilizată în această provocare:</p>
+                </div>
+
+                <!-- Visual Term Cards -->
+                <div class="term-cards-grid">
+                    <!-- Rotable Card -->
+                    <div class="term-card term-card-featured">
+                        <div class="term-card-image">
+                            <img src="img/blanket-pillow.jpg" alt="Rotables - Pernă și pătură de avion" class="img-position-bottom">
+                            <div class="term-card-badge">Concept Principal</div>
+                        </div>
+                        <div class="term-card-content">
+                            <h3>Rotable</h3>
+                            <p>Articol reutilizabil folosit pentru pasageri la bordul unui avion. Se așteaptă să poată fi procesat la destinație și reutilizat pentru un zbor ulterior.</p>
+                            <div class="term-examples">
+                                <span class="example-tag"><i data-lucide="utensils" class="lucide-icon-small"></i> Tacâmuri</span>
+                                <span class="example-tag"><i data-lucide="square" class="lucide-icon-small"></i> Farfurii</span>
+                                <span class="example-tag"><i data-lucide="cloud" class="lucide-icon-small"></i> Pernă</span>
+                                <span class="example-tag"><i data-lucide="shirt" class="lucide-icon-small"></i> Pătură</span>
+                                <span class="example-tag"><i data-lucide="headphones" class="lucide-icon-small"></i> Căști</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rotable Kit Card -->
+                    <div class="term-card term-card-featured">
+                        <div class="term-card-image">
+                            <img src="img/airline-headphones.jpg" alt="Rotable Kit - Căști avion">
+                            <div class="term-card-badge">Per Clasă</div>
+                        </div>
+                        <div class="term-card-content">
+                            <h3>Rotable Kit</h3>
+                            <p>Un kit de rotables specific pentru o clasă. Ca simplificare, există un singur kit pentru fiecare clasă și zbor, iar kiturile pentru o clasă sunt identice indiferent de avion, durata zborului sau ora din zi.</p>
+                        </div>
+                    </div>
+
+                    <!-- Hub and Spoke Card -->
+                    <div class="term-card term-card-wide">
+                        <div class="term-card-image">
+                            <img src="img/airplane-food-tray.jpg" alt="Hub and Spoke - Rețea aeroporturi">
+                            <div class="term-card-badge">Arhitectură Rețea</div>
+                        </div>
+                        <div class="term-card-content">
+                            <h3>Hub and Spoke</h3>
+                            <p>Un mod de a proiecta o rețea de zboruri a unei companii aeriene unde există un singur aeroport de bază (hub-ul) și un număr de aeroporturi outstation. Zborurile sunt programate doar între hub și un outstation sau între un outstation și hub (zbor de retur).</p>
+                            <div class="term-diagram">
+                                <div class="hub-visual">
+                                    <div class="hub-center">HUB</div>
+                                    <div class="spoke spoke-1">A1</div>
+                                    <div class="spoke spoke-2">A2</div>
+                                    <div class="spoke spoke-3">A3</div>
+                                    <div class="spoke spoke-4">A4</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hub Card -->
+                    <div class="term-card">
+                        <div class="term-card-image">
+                            <img src="img/airport-terminal-hub.jpg" alt="Hub - Aeroport principal">
+                            <div class="term-card-badge term-badge-blue">Central</div>
+                        </div>
+                        <div class="term-card-content">
+                            <h3>Hub</h3>
+                            <p>Aeroportul principal de bază al companiei aeriene, unde au loc toate operațiunile critice, cum ar fi mentenanța, și unde sunt bazate avioanele.</p>
+                            <div class="term-highlight">
+                                <i data-lucide="building-2" class="lucide-icon-inline"></i>
+                                <span>În provocare: <strong>HUB1</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outstation Card -->
+                    <div class="term-card">
+                        <div class="term-card-image">
+                            <img src="img/airplane-interior-class.jpg" alt="Outstation - Aeroport satelit">
+                            <div class="term-card-badge term-badge-orange">Satelit</div>
+                        </div>
+                        <div class="term-card-content">
+                            <h3>Outstation</h3>
+                            <p>Aeroport într-o configurație hub-and-spoke unde există suport mai limitat și unde avioanele sunt așteptate doar să sosească și să facă turnaround înapoi la hub.</p>
+                            <div class="term-highlight">
+                                <i data-lucide="map-pin" class="lucide-icon-inline"></i>
+                                <span>Exemple: <strong>A1, A2, A3...</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Turnaround Card -->
+                    <div class="term-card term-card-wide">
+                        <div class="term-card-image">
+                            <img src="img/outstation-airport.jpg" alt="Turnaround - Operațiuni la sol">
+                            <div class="term-card-badge term-badge-red">Operațiuni</div>
+                        </div>
+                        <div class="term-card-content">
+                            <h3>Turnaround</h3>
+                            <p>Setul de operațiuni care au loc între momentul în care un avion aterizează până când decolează din nou (zborul de retur la un outstation).</p>
+                            <div class="turnaround-steps">
+                                <div class="turnaround-step">
+                                    <i data-lucide="users" class="lucide-icon-small"></i>
+                                    <span>Debarcarea pasagerilor</span>
+                                </div>
+                                <div class="turnaround-step">
+                                    <i data-lucide="package" class="lucide-icon-small"></i>
+                                    <span>Descărcarea cargo</span>
+                                </div>
+                                <div class="turnaround-step">
+                                    <i data-lucide="sparkles" class="lucide-icon-small"></i>
+                                    <span>Curățenie</span>
+                                </div>
+                                <div class="turnaround-step">
+                                    <i data-lucide="utensils" class="lucide-icon-small"></i>
+                                    <span>Încărcarea rotables</span>
+                                </div>
+                                <div class="turnaround-step">
+                                    <i data-lucide="fuel" class="lucide-icon-small"></i>
+                                    <span>Alimentare</span>
+                                </div>
+                                <div class="turnaround-step">
+                                    <i data-lucide="plane-takeoff" class="lucide-icon-small"></i>
+                                    <span>Îmbarcare</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flight Class Card -->
+                    <div class="term-card term-card-wide">
+                        <div class="term-card-image">
+                            <img src="img/business-class-seat.jpg" alt="Clase de zbor - Interior avion">
+                            <div class="term-card-badge term-badge-gold">4 Clase</div>
+                        </div>
+                        <div class="term-card-content">
+                            <h3>Clasă de Zbor</h3>
+                            <p>Clasa de amenități la bord. Fiecare clasă are exact un tip de kit rotable desemnat.</p>
+                            <div class="flight-classes">
+                                <div class="flight-class class-first">
+                                    <span class="class-name">FIRST</span>
+                                    <span class="class-desc">Premium Kit</span>
+                                </div>
+                                <div class="flight-class class-business">
+                                    <span class="class-name">BUSINESS</span>
+                                    <span class="class-desc">Business Kit</span>
+                                </div>
+                                <div class="flight-class class-premium">
+                                    <span class="class-name">PREMIUM_ECONOMY</span>
+                                    <span class="class-desc">Premium Kit</span>
+                                </div>
+                                <div class="flight-class class-economy">
+                                    <span class="class-name">ECONOMY</span>
+                                    <span class="class-desc">Standard Kit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Challenge Section -->
+        <section id="challenge" class="section">
+            <div class="container">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Provocarea</h2>
+
+                <div class="vision-box" style="background: linear-gradient(rgba(255,255,255,0.90), rgba(255,255,255,0.90)), url('img/airplane-cockpit.jpg') right center/40% no-repeat;">
+                    <h3>Ce Trebuie Să Construiți</h3>
+                    <p>Echipa voastră va dezvolta un <strong>algoritm inteligent</strong> care să gestioneze eficient aprovizionarea și logistica kiturilor (rotables) în rețeaua aviației. În fiecare rundă (oră de simulare), algoritmul vostru trebuie să decidă:</p>
+                    <ul style="margin-top: 1rem;">
+                        <li><strong>Câte kituri să încarce pe fiecare zbor</strong> pentru fiecare clasă de pasageri</li>
+                        <li><strong>Câte kituri să cumpere</strong> pentru a reaproviziona stocul la HUB1 (opțional)</li>
+                        <li><strong>Cum să balanseze costurile</strong> între mișcări, achiziții și penalități</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h3>Date de Intrare</h3>
+                    <p>Algoritmul vostru va primi următoarele tipuri de date:</p>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="building-2" class="lucide-icon"></i>
+                            </div>
+                            <h4>Airports</h4>
+                            <p>Capacități de stocare, costuri de loading și procesare, timp de procesare, stocuri inițiale de kituri</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="calendar" class="lucide-icon"></i>
+                            </div>
+                            <h4>Flight Schedule</h4>
+                            <p>Conexiuni HUB↔outstation, ora zborului, frecvența (zilele săptămânii). <strong>Nu include</strong> info despre avion sau pasageri</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="plane" class="lucide-icon"></i>
+                            </div>
+                            <h4>Airplane Types</h4>
+                            <p>Capacități de pasageri și kituri per clasă, cost per kg și km de zbor. Capacitățile sunt specifice per clasă</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="plane-takeoff" class="lucide-icon"></i>
+                            </div>
+                            <h4>Flights (Evenimente)</h4>
+                            <p>Instanțe ale schedule-ului cu valori planned și actual (departure, arrival, passengers, aircraft, distance)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Informații despre Kit Types</h3>
+                    <p>Fiecare tip de kit are asociate:</p>
+                    <ul class="feature-list">
+                        <li><strong>Cost:</strong> Folosit pentru înlocuire și calcul penalități</li>
+                        <li><strong>Weight (Greutate):</strong> Folosit pentru calculul costului de zbor</li>
+                        <li><strong>Replacement Lead Time:</strong> Timpul de livrare pentru comenzi noi la HUB</li>
+                    </ul>
+                </div>
+
+                <div class="demo-box">
+                    <h3>Scenariu Demo: Prima Rundă</h3>
+                    <div class="demo-steps">
+                        <div class="demo-step">
+                            <span class="step-number">1</span>
+                            <p><strong>Ora 0:</strong> Primiți starea inițială - toate aeroporturile au stoc complet, programul zborurilor pentru următoarele 24h</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">2</span>
+                            <p><strong>Analizați:</strong> Zborul LH123 (HUB1→A1) pleacă în 2 ore cu 132 pasageri (2 First, 10 Business, 20 Premium, 100 Economy)</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">3</span>
+                            <p><strong>Decideți:</strong> Încărcați 2+10+20+105 kituri (5 extra pentru Economy pentru reaprovizionare A1)</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">4</span>
+                            <p><strong>Submit:</strong> Trimiteți decizia prin API - costul de mișcare este calculat automat</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">5</span>
+                            <p><strong>Rezultat:</strong> După 2 ore, kiturile ajung la A1, stocul HUB1 scade, cost total actualizat</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">6</span>
+                            <p><strong>Repetiție:</strong> La fiecare oră, noi zboruri devin disponibile - continuați până la sfârșitul sesiunii</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="challenges-box">
+                    <h3>Provocări Cheie</h3>
+                    <ol class="challenges-list">
+                        <li><strong>Previziune:</strong> Date planificate 24h în avans, dar zborurile pot avea întârzieri - cum vă pregătiți?</li>
+                        <li><strong>Balanță:</strong> Încărcați prea puține kituri → pasageri nemulțumiți (penalități mari). Prea multe → costuri de transport inutile</li>
+                        <li><strong>Reaprovizionare:</strong> Aeroporturile satelit pot rămâne fără stoc - trimiteți în avans sau cumpărați la HUB1?</li>
+                        <li><strong>Capacitate:</strong> Nu depășiți limitele de stocare la fiecare aeroport sau intake/outtake zilnic</li>
+                        <li><strong>Timp de procesare:</strong> Kiturile folosite pe zborul dus nu sunt disponibile imediat pentru zborul întors</li>
+                    </ol>
+                </div>
+
+                <div class="tip-box">
+                    <strong><i data-lucide="lightbulb" class="lucide-icon-inline"></i> Strategie Câștigătoare:</strong>
+                    <p>Echipele de succes vor combina algoritmi de optimizare (programare liniară, algoritmi genetici, reinforcement learning) cu predicții inteligente și adaptare dinamică la schimbările de ultimă oră.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Network Section -->
+        <section id="network" class="section">
+            <div class="container">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Rețeaua & Reguli</h2>
+                
+                <div class="vision-box" style="background: linear-gradient(rgba(255,255,255,0.90), rgba(255,255,255,0.90)), url('img/logistics-network.jpg') right center/40% no-repeat;">
+                    <h3>Structura Hub-and-Spoke</h3>
+                    <p>Rețeaua constă dintr-un <strong>hub central (HUB1)</strong> conectat la <strong>multiple aeroporturi outstation</strong>. Toate comenzile de cumpărare a kiturilor trebuie plasate la HUB1. Aeroporturile outstation sunt conectate la HUB1 prin zboruri programate regulate.</p>
+
+                    <div class="mermaid" style="margin-top: 1.5rem; text-align: center;">
+graph TD
+    HUB1[<strong>HUB1</strong><br/>Central Hub]
+    A1[Outstation A1]
+    A2[Outstation A2]
+    A3[Outstation A3]
+    Ax[Outstation ...]
+    HUB1 --> A1
+    HUB1 --> A2
+    HUB1 --> A3
+    HUB1 --> Ax
+    A1 --> HUB1
+    A2 --> HUB1
+    A3 --> HUB1
+    Ax --> HUB1
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; text-align: center;"><em>Exemplu conceptual - numărul real de aeroporturi este definit în fișierele <code>CSV</code></em></p>
+                </div>
+
+
+                <div class="content-section">
+                    <h3>Constrângeri per Aeroport</h3>
+                    <p>Fiecare aeroport are parametri specifici care trebuie luați în considerare:</p>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="warehouse" class="lucide-icon"></i>
+                            </div>
+                            <h4>Capacitate de Stocare</h4>
+                            <p>Număr maxim de kituri care pot fi stocate simultan (per clasă)</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="upload" class="lucide-icon"></i>
+                            </div>
+                            <h4>Cost de Loading</h4>
+                            <p>Cost pentru încărcarea kiturilor pe zboruri (specific per aeroport și clasă)</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="settings" class="lucide-icon"></i>
+                            </div>
+                            <h4>Cost și Timp de Procesare</h4>
+                            <p>Cost și durată pentru procesarea kiturilor la sosire (pregătire pentru reutilizare)</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="package" class="lucide-icon"></i>
+                            </div>
+                            <h4>Stocuri Inițiale</h4>
+                            <p>Numărul de kituri disponibile la începutul simulării pentru fiecare clasă</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>Harta de Joc - Componentele Sistemului</h3>
+                    <p>Fiecare element din joc are atribute specifice pe care trebuie să le înțelegeți:</p>
+
+                    <div class="demo-steps" style="margin-top: 1.5rem;">
+                        <div class="demo-step">
+                            <span class="step-number"><i data-lucide="calendar" class="lucide-icon" style="width:20px;height:20px;"></i></span>
+                            <div>
+                                <p><strong>Flight Schedule (din <code>CSV</code>)</strong></p>
+                                <ul style="margin: 0.5rem 0; padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>Număr zbor</li>
+                                    <li>Oră planificată de decolare</li>
+                                    <li>Oră planificată de aterizare</li>
+                                    <li>Distanță standard</li>
+                                    <li>Frecvență (zilele din săptămână)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number"><i data-lucide="plane" class="lucide-icon" style="width:20px;height:20px;"></i></span>
+                            <div>
+                                <p><strong>Airplane Types (din <code>CSV</code>)</strong></p>
+                                <ul style="margin: 0.5rem 0; padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>Număr de scaune pentru fiecare clasă</li>
+                                    <li>Capacitate încărcare kit-uri pentru fiecare clasă</li>
+                                    <li>Cost per kg per km (fuel cost)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number"><i data-lucide="building-2" class="lucide-icon" style="width:20px;height:20px;"></i></span>
+                            <div>
+                                <p><strong>Airport (Outstation)</strong></p>
+                                <ul style="margin: 0.5rem 0; padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>Capacitate stocare kit-uri per clasă</li>
+                                    <li>Cost încărcare pentru fiecare kit</li>
+                                    <li>Cost și timp procesare per tip de kit</li>
+                                    <li>Stocuri inițiale de kit-uri</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number"><i data-lucide="home" class="lucide-icon" style="width:20px;height:20px;"></i></span>
+                            <div>
+                                <p><strong>Hub (Aeroportul Central)</strong></p>
+                                <ul style="margin: 0.5rem 0; padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>Toate caracteristicile unui Airport</li>
+                                    <li><strong>PLUS:</strong> Poate comanda kit-uri noi (cu lead-time)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number"><i data-lucide="plane-takeoff" class="lucide-icon" style="width:20px;height:20px;"></i></span>
+                            <div>
+                                <p><strong>Flight Instance (Evenimente API)</strong></p>
+                                <ul style="margin: 0.5rem 0; padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>Avion – planificat și efectiv folosit</li>
+                                    <li>Număr pasageri per clasă – planificat și îmbarcat</li>
+                                    <li>Distanță zbor – planificată și reală</li>
+                                    <li>Timpi – planificați și actuali</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="challenges-box">
+                    <h3>Evenimente Zboruri</h3>
+                    <p>Zborurile sunt furnizate ca evenimente în răspunsurile API:</p>
+                    <ul class="feature-list">
+                        <li><code>SCHEDULED</code> (24h înainte) - Passenger loads, scheduled departure/arrival times. <em>Notă: Niciun zbor nu pleacă în ziua 0 înainte de ora 4.</em></li>
+                        <li><code>CHECKED_IN</code> (1h înainte de departure planificat) - Actual departure time, actual passengers</li>
+                        <li><code>LANDED</code> (la arrival) - Actual arrival time, actual distance</li>
+                    </ul>
+                </div>
+
+                <div class="challenges-box">
+                    <h3>Zboruri Pereche și Turnaround</h3>
+                    <ul class="feature-list">
+                        <li><strong>4 Clase de Pasageri:</strong> <code>FIRST</code>, <code>BUSINESS</code>, <code>PREMIUM_ECONOMY</code>, <code>ECONOMY</code> - fiecare necesită kituri specifice</li>
+                        <li><strong>Zboruri Pereche:</strong> Fiecare zbor HUB1→Ax are un zbor de retur Ax→HUB1 cu același tip de avion</li>
+                        <li><strong>Turnaround Time:</strong> Timpul petrecut de avion la sol între zborul dus și întors (doar la outstations)</li>
+                        <li><strong>Processing Time:</strong> Timpul necesar pentru procesarea kiturilor (de obicei mai lung decât turnaround)</li>
+                        <li><strong>Variabilitate:</strong> Zborurile pot avea întârzieri, distanța reală poate fi mai mare decât cea planificată</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box red">
+                    <h4><i data-lucide="alert-triangle" class="lucide-icon-inline"></i> Important!</h4>
+                    <p>Kiturile folosite pe zborul dus nu sunt disponibile imediat pentru zborul întors! Timpul de procesare este mai lung decât timpul de turnaround al avionului. Planificați în avans pentru a menține stocuri adecvate la aeroporturile satelit.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Costs Section -->
+        <section id="costs" class="section red-top">
+            <div class="container">
+                <div class="section-number red">4</div>
+                <h2 class="section-title red-underline">Structura Costurilor</h2>
+
+                <div class="vision-box">
+                    <h3>Formula Costului Total</h3>
+                    <p>În fiecare rundă, costul total este suma dintre <strong>costurile operaționale</strong> (per zbor și achiziții) și <strong>costurile de penalitate</strong>.</p>
+                    <div class="formula-box">
+                        <code>Cost Total<sub>r</sub> = Cost Operațional<sub>r</sub> + Cost Penalități<sub>r</sub></code>
+                    </div>
+                </div>
+
+                <!-- Carousel pentru detalii costuri -->
+                <div class="carousel-wrapper">
+                    <button class="carousel-arrow carousel-prev" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="carousel-arrow carousel-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                <div class="carousel-container">
+                    <div class="carousel-tabs">
+                        <button class="carousel-tab active">
+                            <i data-lucide="calculator" class="tab-icon"></i>
+                            Costuri Operaționale
+                        </button>
+                        <button class="carousel-tab red-active">
+                            <i data-lucide="alert-circle" class="tab-icon"></i>
+                            Penalități în Joc
+                        </button>
+                        <button class="carousel-tab red-active">
+                            <i data-lucide="flag" class="tab-icon"></i>
+                            Penalități End Game
+                        </button>
+                    </div>
+
+                    <div class="carousel-content">
+                        <!-- Slide 1: Costuri Operaționale -->
+                        <div class="carousel-slide active">
+                            <div class="content-section" style="margin: 0;">
+                                <h3>Costuri Operaționale per Zbor</h3>
+
+                                <div class="feature-card">
+                                    <h4><i data-lucide="upload" class="lucide-icon-inline"></i> Cost de Loading</h4>
+                                    <p>Cost pentru încărcarea kiturilor pe zbor, bazat pe costurile specifice aeroportului de plecare:</p>
+                                    <div class="formula-box">
+                                        <code>Kit Loading Cost<sub>f</sub> = Σ<sub>k</sub> (kits<sub>f,k</sub> × loadingCost<sub>airport,k</sub>)</code>
+                                    </div>
+                                </div>
+
+                                <div class="feature-card" style="margin-top: 1rem;">
+                                    <h4><i data-lucide="plane" class="lucide-icon-inline"></i> Cost de Mișcare (Transport)</h4>
+                                    <p>Cost bazat pe distanța actuală, costul combustibilului și greutatea kiturilor:</p>
+                                    <div class="formula-box">
+                                        <code>Kit Movement Cost<sub>f</sub> = actualDistance<sub>f</sub> × fuelCostPerKm<sub>f</sub> × Σ<sub>k</sub> (kits<sub>f,k</sub> × weight<sub>k</sub>)</code>
+                                    </div>
+                                </div>
+
+                                <div class="feature-card" style="margin-top: 1rem;">
+                                    <h4><i data-lucide="settings" class="lucide-icon-inline"></i> Cost de Procesare</h4>
+                                    <p>Cost pentru procesarea kiturilor la aeroportul de sosire:</p>
+                                    <div class="formula-box">
+                                        <code>Kit Processing Cost<sub>f</sub> = Σ<sub>k</sub> (kits<sub>f,k</sub> × processingCost<sub>airport,k</sub>)</code>
+                                    </div>
+                                </div>
+
+                                <div class="feature-card" style="margin-top: 1rem;">
+                                    <h4><i data-lucide="shopping-cart" class="lucide-icon-inline"></i> Cost de Achiziție</h4>
+                                    <p>Cost pentru kiturile cumpărate la HUB1:</p>
+                                    <div class="formula-box">
+                                        <code>Kit Purchasing Cost = Σ<sub>k</sub> (kitsPurchased<sub>k</sub> × cost<sub>k</sub>)</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2: Penalități în Joc -->
+                        <div class="carousel-slide">
+                            <div class="challenges-box" style="margin: 0;">
+                                <h3>Costuri de Penalitate</h3>
+                                <p>Penalitățile sunt aplicate pentru încălcarea constrângerilor. Factorii sunt definiți în <code>PenaltyFactors.java</code>.</p>
+
+                                <ol class="challenges-list">
+                                    <li>
+                                        <strong>Understock (Inventar Negativ):</strong> Dacă kiturile disponibile la un aeroport &lt; 0
+                                        <div class="formula-box">
+                                            <code>UnderstockPenalty<sub>a</sub> = NEGATIVE_INVENTORY_FACTOR × Σ<sub>k, availableKits&lt;0</sub> |availableKits<sub>a,k</sub>|</code>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <strong>Overstock (Depășire Capacitate Aeroport):</strong> Dacă kiturile depășesc capacitatea de stocare
+                                        <div class="formula-box">
+                                            <code>OverstockPenalty<sub>a</sub> = OVER_CAPACITY_FACTOR × Σ<sub>k, availableKits&gt;capacity</sub> (availableKits<sub>a,k</sub> - capacity<sub>a,k</sub>)</code>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <strong>Plane Overload (Supraîncărcare Avion):</strong> Dacă kiturile încărcate depășesc capacitatea avionului pentru o clasă
+                                        <div class="formula-box">
+                                            <code>PlaneOverload<sub>f</sub> = FLIGHT_OVERLOAD_FACTOR × actualDistance<sub>f</sub> × fuelCostPerKm<sub>f</sub> × Σ<sub>k</sub> (kitCost<sub>k</sub> × max(0, loadedKits<sub>f,k</sub> - kitCapacity<sub>f,k</sub>))</code>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <strong>Unfulfilled Passengers (Pasageri Fără Kituri):</strong> Pentru fiecare pasager fără kit
+                                        <div class="formula-box">
+                                            <code>UnfulfilledKits<sub>f</sub> = UNFULFILLED_PASSENGERS_FACTOR × actualDistance<sub>f</sub> × Σ<sub>k</sub> (kitCost<sub>k</sub> × max(0, passengers<sub>f,k</sub> - loadedKits<sub>f,k</sub>))</code>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <strong>Invalid Flight:</strong> Dacă referențiați un zbor inexistent sau la momentul greșit
+                                        <div class="formula-box">
+                                            <code>InvalidFlightPenalty = Σ<sub>f∈InvalidFlights</sub> INCORRECT_FLIGHT_LOAD_FACTOR</code>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3: Penalități End Game -->
+                        <div class="carousel-slide">
+                            <div class="challenges-box" style="margin: 0;">
+                                <h3>Penalități End of Game</h3>
+                                <p>La sfârșitul sesiunii se aplică penalități adiționale. Dacă sesiunea este oprită înainte de final, toate penalitățile sunt înmulțite cu <code>EARLY_END_OF_GAME</code> factor.</p>
+
+                                <ol class="challenges-list">
+                                    <li>
+                                        <strong>Remaining Stocks:</strong> Pentru stocurile rămase la fiecare aeroport
+                                        <div class="formula-box">
+                                            <code>RemainingStocks<sub>a</sub> = END_OF_GAME_REMAINING_STOCK_FACTOR × Σ<sub>k</sub> (|min(0, availableKits)| × NEGATIVE_INVENTORY_FACTOR + max(0, availableKits))</code>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <strong>In Process Kits:</strong> Pentru kiturile aflate în procesare
+                                        <div class="formula-box">
+                                            <code>InProcessKits<sub>a</sub> = END_OF_GAME_PENDING_KIT_PROCESSING_FACTOR × Σ<sub>k</sub> (inProcessKits<sub>a,k</sub> × kitCost<sub>k</sub>)</code>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <strong>Uncovered Flights:</strong> Pentru zborurile rămase neacoperite
+                                        <div class="formula-box">
+                                            <code>RemainingRequiredKits<sub>f</sub> = END_OF_GAME_UNFULFILLED_FLIGHT_KITS × distance<sub>f</sub> × Σ<sub>k</sub> (plannedPassengers<sub>f,k</sub> × kitCost<sub>k</sub> × kitWeight<sub>k</sub>)</code>
+                                        </div>
+                                    </li>
+                                </ol>
+
+                                <div class="warning-box red" style="margin-top: 1.5rem;">
+                                    <h4><i data-lucide="alert-triangle" class="lucide-icon-inline"></i> Atenție la Oprirea Timpurie!</h4>
+                                    <p>Puteți opri sesiunea mai devreme, dar va fi <strong>puternic penalizată</strong>. Dacă opriți sesiunea în ultimele 24 de ore, penalitățile vor fi înmulțite cu 10. Oprirea și crearea unei sesiuni noi este destinată doar pentru gestionarea problemelor tehnice.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-indicator">1 / 3</div>
+                </div>
+                </div>
+
+                <div class="tip-box red">
+                    <strong><i data-lucide="target" class="lucide-icon-inline"></i> Strategie de Optimizare:</strong>
+                    <p>Evitați penalitățile cu orice preț - sunt mult mai scumpe decât costurile operaționale! Atenție la capacitățile avioanelor (Plane Overload) și la satisfacerea tuturor pasagerilor (Unfulfilled Passengers).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Mechanics Section -->
+        <section id="mechanics" class="section">
+            <div class="container">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Mecanica Jocului</h2>
+                
+                <div class="vision-box">
+                    <h3>Cum Funcționează o Sesiune</h3>
+                    <p>Fiecare echipă gestionează o sesiune activă, începând de la <strong>ziua 0 și ora 0</strong> cu starea inițială a rețelei. Sesiunea progresează oră cu oră, fiecare rundă reprezentând o oră de timp simulat. Sesiunea se încheie după un număr fix de ore, cu penalități adiționale pentru stocuri rămase, kituri în procesare și zboruri neacoperite.</p>
+                </div>
+
+                <div class="demo-box">
+                    <h3>Pașii Executați în Fiecare Rundă</h3>
+                    <p>Fiecare rundă (oră) constă din următorii 8 pași care afectează rețeaua și zborurile:</p>
+                    <div class="demo-steps">
+                        <div class="demo-step">
+                            <span class="step-number">1</span>
+                            <p><strong>Validate Session and Time:</strong> Sistemul verifică că sesiunea este activă și ziua/ora trimisă corespunde rundei așteptate</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">2</span>
+                            <p><strong>Apply Kit Loads to Flights:</strong> Se creează mișcări de kituri care se vor executa la ora de plecare și se scad kiturile din stocul aeroportului de plecare. Echipele pot trimite încărcări până la momentul decolării; pentru un zbor dat, sunt permise modificări multiple ale încărcărilor până la take-off</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">3</span>
+                            <p><strong>Apply Kit Purchasing Orders at HUB1:</strong> Se procesează comenzile de achiziție pentru HUB1. Pentru fiecare comandă, se creează o mișcare de kituri care ia în considerare <em>lead-time</em>-ul de livrare pentru reaprovizionare</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">4</span>
+                            <p><strong>Process Kit Movements for the Hour:</strong> Se procesează toate mișcările de kituri existente în sistem pentru ziua și ora curentă. Acestea pot atât crește cât și scădea stocul aeroportului</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">5</span>
+                            <p><strong>Check Airport Stocks Boundaries and Apply Penalties:</strong> Se verifică dacă stocurile pentru ora curentă sunt în limite. Dacă nu, se aplică penalități pentru understock sau overstock</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">6</span>
+                            <p><strong>Create Kit Movements for Landing Flights:</strong> Se creează mișcările de kituri care vor crește stocul aeroportului destinație după ce timpii de procesare au trecut</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">7</span>
+                            <p><strong>Advance Simulation Time:</strong> Simularea avansează la următoarea oră/zi, pregătind următoarea rundă de acțiuni</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">8</span>
+                            <p><strong>Prepare Flight Status Updates:</strong> Se actualizează statusul tuturor zborurilor (<code>SCHEDULED</code>, <code>CHECKED_IN</code>, <code>LANDED</code>) pentru runda următoare, reflectând starea curentă a rețelei</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Ce Trimiteți în Fiecare Rundă</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="plane-takeoff" class="lucide-icon"></i>
+                            </div>
+                            <h4>Încărcări Zboruri</h4>
+                            <p>Pentru fiecare zbor programat, specificați câte kituri să încărcați pentru fiecare clasă (First, Business, Premium, Economy)</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="shopping-bag" class="lucide-icon"></i>
+                            </div>
+                            <h4>Comenzi Achiziții (Opțional)</h4>
+                            <p>Plasați comenzi de cumpărare pentru a crește stocul disponibil la HUB1 - singura locație unde puteți cumpăra kituri noi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="challenges-box">
+                    <h3>Informații Importante despre Timing</h3>
+                    <ul class="feature-list">
+                        <li><strong>Date Planificate (24h în avans):</strong> Zborurile devin vizibile cu 24h înainte de plecare - includeți ora planificată de plecare, distanța, tipul de avion</li>
+                        <li><strong>Date Actuale (1h înainte):</strong> Detaliile actuale ale zborului (întârzieri, schimbări de distanță/avion) sunt furnizate cu 1h înainte de plecare</li>
+                        <li><strong>Variabilitate Zboruri:</strong> Zborurile pot avea întârzieri, distanța actuală poate fi mai mare decât cea planificată - echipele trebuie să țină cont de aceste incertitudini</li>
+                        <li><strong>Window de Decizie:</strong> Aveți între 24h (date planificate) și 1h (date actuale) pentru a vă ajusta strategia</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box red">
+                    <h4><i data-lucide="clock" class="lucide-icon-inline"></i> Timing Critic!</h4>
+                    <p>Folosiți datele planificate pentru strategie inițială, dar fiți pregătiți să vă ajustați rapid când primiți datele actuale cu 1h înainte! Întârzierile pot afecta secvențele de zboruri și disponibilitatea kiturilor.</p>
+                </div>
+
+                <div class="content-section">
+                    <h3>Backend Calculează Automat</h3>
+                    <ul class="feature-list">
+                        <li>Livrări de kituri și sosiri la destinații</li>
+                        <li>Toate tipurile de penalități</li>
+                        <li>Costuri pentru mișcări și achiziții</li>
+                        <li>Cost cumulat pe întreaga sesiune</li>
+                        <li>Actualizări de stare pentru toate aeroporturile</li>
+                        <li>Status-uri zboruri (scheduled, checked-in, landed)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Section -->
+        <section id="api" class="section">
+            <div class="container">
+                <div class="section-number">6</div>
+                <h2 class="section-title">API & Structura Datelor</h2>
+
+                <div class="vision-box">
+                    <h3>REST API</h3>
+                    <p>Interacționați cu sistemul prin <strong>REST API</strong> documentat via <code>OpenAPI</code>/<code>Swagger</code> odată ce aplicația rulează. Toate endpoint-urile necesită autentificare prin header-ul <code>API-KEY</code>.</p>
+
+                    <div class="mermaid" style="margin-top: 1.5rem; text-align: center;">
+graph TD
+    Start((Start))
+    StartSession[Start Session]
+    Round[Play Round]
+    Running{{Running}}
+    Done((Done))
+    Start --> StartSession
+    StartSession --> Round
+    Round --> Running
+    Running --> Done
+    Running --> Round
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Flow-ul sesiunii: porniți sesiunea, executați runde în buclă până la finalizare sau oprire manuală.</p>
+                </div>
+
+                <!-- Carousel pentru detalii API -->
+                <div class="carousel-wrapper">
+                    <button class="carousel-arrow carousel-prev" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="carousel-arrow carousel-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                <div class="carousel-container">
+                    <div class="carousel-tabs">
+                        <button class="carousel-tab active">
+                            <i data-lucide="file-json" class="tab-icon"></i>
+                            Structura Răspunsului
+                        </button>
+                        <button class="carousel-tab">
+                            <i data-lucide="code" class="tab-icon"></i>
+                            Exemplu JSON
+                        </button>
+                        <button class="carousel-tab">
+                            <i data-lucide="shield-alert" class="tab-icon"></i>
+                            Reguli Validare
+                        </button>
+                    </div>
+
+                    <div class="carousel-content">
+                        <!-- Slide 1: Structura Răspunsului -->
+                        <div class="carousel-slide active">
+                            <div class="content-section" style="margin: 0;">
+                                <h3>Structura Răspunsului pentru Fiecare Rundă</h3>
+                                <p>Când trimiteți acțiunile pentru o rundă, API-ul returnează un răspuns structurat astfel:</p>
+
+                                <h4 style="margin-top: 2rem;"><i data-lucide="file-json" class="lucide-icon-inline"></i> <code>HourResponseDto</code></h4>
+                                <ul class="feature-list">
+                                    <li><code>day</code> - Ziua curentă de simulare</li>
+                                    <li><code>hour</code> - Ora curentă de simulare</li>
+                                    <li><code>flightUpdates</code> - Lista de obiecte <code>FlightEvent</code>, fiecare reprezentând un zbor relevant rundei curente</li>
+                                    <li><code>penalties</code> - Lista de obiecte <code>RotablesPenaltyDto</code>, fiecare descriind o penalitate aplicată în rundă</li>
+                                    <li><code>totalCost</code> - Costul cumulat pentru sesiune până la și inclusiv această rundă</li>
+                                </ul>
+
+                                <h4 style="margin-top: 2rem;"><i data-lucide="plane" class="lucide-icon-inline"></i> <code>FlightEvent</code> (în <code>flightUpdates</code>)</h4>
+                                <p>Fiecare obiect <code>FlightEvent</code> conține:</p>
+                                <ul class="feature-list">
+                                    <li><code>eventType</code> - Status-ul zborului (ex: <code>SCHEDULED</code>, <code>CHECKED_IN</code>, <code>LANDED</code>)</li>
+                                    <li><code>flightNumber</code> - Identificatorul zborului</li>
+                                    <li><code>flightId</code> - <code>UUID</code> unic pentru zbor</li>
+                                    <li><code>originAirport</code> - Codul aeroportului de plecare</li>
+                                    <li><code>destinationAirport</code> - Codul aeroportului de sosire</li>
+                                    <li><code>departure</code> - Ora de plecare planificată sau actuală (<code>ReferenceHour</code>)</li>
+                                    <li><code>arrival</code> - Ora de sosire planificată sau actuală (<code>ReferenceHour</code>)</li>
+                                    <li><code>passengers</code> - Obiect <code>PerClassAmount</code> cu numărul de pasageri per clasă</li>
+                                    <li><code>aircraftType</code> - Tipul de avion alocat zborului</li>
+                                </ul>
+
+                                <h4 style="margin-top: 2rem;"><i data-lucide="alert-circle" class="lucide-icon-inline"></i> <code>RotablesPenaltyDto</code> (în <code>penalties</code>)</h4>
+                                <p>Fiecare obiect <code>RotablesPenaltyDto</code> conține:</p>
+                                <ul class="feature-list">
+                                    <li><code>code</code> - Tipul penalității (ex: <code>NEGATIVE_INVENTORY</code>, <code>INVALID_FLIGHT</code>)</li>
+                                    <li><code>flightId</code> - <code>UUID</code>-ul zborului afectat (dacă aplicabil)</li>
+                                    <li><code>flightNumber</code> - Numărul zborului (dacă aplicabil)</li>
+                                    <li><code>issuedDay</code> / <code>issuedHour</code> - Momentul când a fost emisă penalitatea</li>
+                                    <li><code>penalty</code> - Costul penalității</li>
+                                    <li><code>reason</code> - Mesaj descriind motivul penalității</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2: Exemplu JSON -->
+                        <div class="carousel-slide">
+                            <div class="demo-box" style="margin: 0;">
+                                <h3>Exemplu Răspuns API</h3>
+                                <div class="code-block" data-language="json">
+                                    <pre><code class="language-json">{
+  "day": 5,
+  "hour": 12,
+  "flightUpdates": [
+    {
+      "eventType": "SCHEDULED",
+      "flightNumber": "LH123",
+      "flightId": "b1c2d3e4-5678-90ab-cdef-1234567890ab",
+      "originAirport": "HUB1",
+      "destinationAirport": "A1",
+      "departure": { "day": 5, "hour": 14 },
+      "arrival": { "day": 5, "hour": 16 },
+      "passengers": {
+        "firstClass": 2,
+        "business": 10,
+        "premiumEconomy": 20,
+        "economy": 100
+      },
+      "aircraftType": "A320"
+    }
+  ],
+  "penalties": [
+    {
+      "code": "NEGATIVE_INVENTORY",
+      "flightId": null,
+      "flightNumber": null,
+      "issuedDay": 5,
+      "issuedHour": 12,
+      "penalty": 500.0,
+      "reason": "Negative inventory for airport A1 kit type ECONOMY"
+    }
+  ],
+  "totalCost": 12345.67
+}</code></pre>
+                                </div>
+
+                                <p style="margin-top: 1.5rem;">
+                                    Acest răspuns furnizează toate informațiile necesare pentru a urmări starea rețelei, progresul zborurilor, penalitățile și impactul deciziilor voastre asupra costurilor pentru fiecare rundă.
+                                </p>
+
+                                <div class="tip-box" style="margin-top: 1.5rem;">
+                                    <strong><i data-lucide="info" class="lucide-icon-inline"></i> Informații despre API:</strong>
+                                    <ul style="margin-top: 0.5rem;">
+                                        <li><code>Swagger UI</code>: <a href="http://127.0.0.1:8080/swagger-ui/index.html"><code>http://127.0.0.1:8080/swagger-ui/index.html</code></a></li>
+                                        <li><code>OpenAPI</code> spec: <a href="http://127.0.0.1:8080/api-docs"><code>http://127.0.0.1:8080/api-docs</code></a></li>
+                                        <li>Toate endpoint-urile necesită header <code>API-KEY</code></li>
+                                        <li>Pentru local, folosiți cheile din <code>teams.csv</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3: Reguli Validare -->
+                        <div class="carousel-slide">
+                            <div class="content-section" style="margin: 0;">
+                                <h3><i data-lucide="shield-alert" class="lucide-icon-inline"></i> Reguli de Validare</h3>
+                                <p>Este important să înțelegeți diferența dintre erorile HTTP și penalitățile de business:</p>
+
+                                <div class="feature-grid" style="margin-top: 1.5rem;">
+                                    <div class="feature-card" style="border-left: 4px solid #d32f2f;">
+                                        <h4 style="color: #d32f2f;"><i data-lucide="x-circle" class="lucide-icon-inline"></i> <code>HTTP 400 Bad Request</code></h4>
+                                        <p>Cererea este respinsă complet - corectați și reîncercați:</p>
+                                        <ul class="feature-list" style="margin-top: 0.5rem;">
+                                            <li><strong>JSON incorect/malformat</strong> - sintaxă JSON invalidă</li>
+                                            <li><strong>ID-uri care nu sunt <code>UUID</code> valid</strong> - format <code>UUID</code> nevalid</li>
+                                            <li><strong>Valori numerice în afara intervalului</strong> - valori negative sau peste limitele acceptate</li>
+                                        </ul>
+                                    </div>
+                                    <div class="feature-card" style="border-left: 4px solid #f57c00;">
+                                        <h4 style="color: #f57c00;"><i data-lucide="alert-triangle" class="lucide-icon-inline"></i> <code>HTTP 200 OK</code> cu Penalizare</h4>
+                                        <p>Cererea este acceptată, dar se aplică penalități:</p>
+                                        <ul class="feature-list" style="margin-top: 0.5rem;">
+                                            <li><strong>ID zbor inexistent</strong> - penalizare + ignorarea valorii</li>
+                                            <li><strong>Încărcare la moment greșit</strong> - zborul a decolat deja sau nu e disponibil</li>
+                                            <li><strong>Referință invalidă</strong> - alte referințe către entități inexistente</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="warning-box" style="margin-top: 1.5rem;">
+                                    <strong><i data-lucide="lightbulb" class="lucide-icon-inline"></i> Recomandare:</strong>
+                                    Validați local datele înainte de a le trimite către API. Verificați că:
+                                    <ul style="margin-top: 0.5rem;">
+                                        <li>Toate ID-urile de zbor sunt <code>UUID</code>-uri valide din lista de zboruri primită</li>
+                                        <li>Încărcarea kiturilor se face doar pentru zboruri care nu au decolat încă</li>
+                                        <li>Valorile numerice sunt pozitive și în limite rezonabile</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-indicator">1 / 3</div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Getting Started Section -->
+        <section id="getting-started" class="section">
+            <div class="container">
+                <div class="section-number">7</div>
+                <h2 class="section-title">Cum Începeți</h2>
+                
+                <div class="vision-box">
+                    <h3>Cerințe Tehnice</h3>
+                    <p>Pentru a rula sistemul local, veți avea nevoie de:</p>
+                    <ul class="feature-list">
+                        <li><code>Java 25</code> - Runtime environment (versiune specifică!)</li>
+                        <li><code>Maven</code> - Build tool și dependency management</li>
+                        <li><code>Git</code> - Pentru clonarea repository-ului</li>
+                    </ul>
+                </div>
+
+                <div class="demo-box">
+                    <h3>Pași de Setup</h3>
+                    <div class="demo-steps">
+                        <div class="demo-step">
+                            <span class="step-number">1</span>
+                            <p><strong>Clonați Repository-ul:</strong></p>
+                        </div>
+                    </div>
+                    <div class="code-block" data-language="bash">
+                        <pre><code class="language-bash"># Clonați repository-ul
+git clone [repository-url]
+
+# Navigați în directorul proiectului
+cd flight-rotables-optimization</code></pre>
+                    </div>
+                    <div class="demo-steps">
+                        <div class="demo-step">
+                            <span class="step-number">2</span>
+                            <p><strong>Rulați Aplicația Local:</strong></p>
+                        </div>
+                    </div>
+                    <div class="code-block" data-language="bash">
+                        <pre><code class="language-bash"># Pornire aplicație cu profilul local
+mvn spring-boot:run -Dspring-boot.run.profiles=local</code></pre>
+                    </div>
+                    <p style="margin-top: 0.5rem; margin-bottom: 1.5rem;">Aplicația va porni pe portul <code>8080</code> (configurabil în fișierele de properties)</p>
+                    <div class="demo-steps">
+                        <div class="demo-step">
+                            <span class="step-number">3</span>
+                            <p><strong>Accesați Documentația API:</strong></p>
+                            <p><code>Swagger UI</code>: <a href="http://127.0.0.1:8080/swagger-ui/index.html"><code>http://127.0.0.1:8080/swagger-ui/index.html</code></a></p>
+                            <p><code>OpenAPI 3.1</code> spec: <a href="http://127.0.0.1:8080/api-docs"><code>http://127.0.0.1:8080/api-docs</code></a></p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">4</span>
+                            <p><strong>Obțineți API Key:</strong></p>
+                            <p>Pentru rulare locală, folosiți cheile disponibile în <code>teams.csv</code>. Pentru sesiunea de evaluare, veți primi un <code>API-KEY</code> diferit</p>
+                        </div>
+                        <div class="demo-step">
+                            <span class="step-number">5</span>
+                            <p><strong>Testați Primul Apel:</strong></p>
+                            <p>Folosiți <code>Swagger UI</code> sau <code>curl</code> pentru a testa conectivitatea și autentificarea</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Date & Configurare</h3>
+                    <ul class="feature-list">
+                        <li><strong>Flight Schedule:</strong> <code>eval-platform/src/main/resources/liquibase/data/flight_plan.csv</code></li>
+                        <li><strong>Aircraft Types:</strong> <code>eval-platform/src/main/resources/liquibase/data/aircraft_types.csv</code></li>
+                        <li><strong>Airports with Initial Stocks:</strong> <code>eval-platform/src/main/resources/liquibase/data/airports_with_stocks.csv</code></li>
+                        <li><strong>Penalty Factors:</strong> <code>PenaltyFactors.java</code> - factori pentru calculul penalităților</li>
+                        <li><strong>Kit Costs & Weights:</strong> <code>KitType.java</code> - costuri și greutăți pentru fiecare tip de kit</li>
+                        <li><strong>Bază de Date:</strong> Rulările locale folosesc bază de date în memorie; stocare persistentă poate fi configurată via <code>application-local.properties</code></li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h3>Arhitectură Tehnică</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="server" class="lucide-icon"></i>
+                            </div>
+                            <h4><code>Spring Boot</code> Backend</h4>
+                            <p>REST API cu <code>Spring Boot</code>, <code>JPA</code> repositories, bază de date relațională</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="database" class="lucide-icon"></i>
+                            </div>
+                            <h4>Persistență Date</h4>
+                            <p><code>JPA</code>/<code>Hibernate</code> pentru gestionarea entităților și tranzacțiilor</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="shield" class="lucide-icon"></i>
+                            </div>
+                            <h4>Autentificare</h4>
+                            <p>API key-based authentication pentru toate endpoint-urile</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="file-text" class="lucide-icon"></i>
+                            </div>
+                            <h4>Documentație OpenAPI</h4>
+                            <p><code>Swagger UI</code> pentru explorare și testare interactivă API</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="challenges-box">
+                    <h3>Checklist Dezvoltare</h3>
+                    <ol class="challenges-list">
+                        <li><strong>Setup Environment:</strong> Instalați <code>Java 25</code>, <code>Maven</code>, IDE (<code>IntelliJ</code>/<code>Eclipse</code> recomandate)</li>
+                        <li><strong>Explorați API-ul:</strong> Citiți documentația <code>Swagger</code>, testați endpoint-urile manual</li>
+                        <li><strong>Înțelegeți Datele:</strong> Analizați fișierele <code>CSV</code> furnizate, înțelegeți structura rețelei</li>
+                        <li><strong>Prototip Simplu:</strong> Începeți cu un algoritm simplu (ex: încărcați exact câte kituri sunt pasageri)</li>
+                        <li><strong>Testați & Iterați:</strong> Rulați sesiuni de test, analizați costurile și penalitățile</li>
+                        <li><strong>Optimizați:</strong> Implementați algoritmi sofisticați (LP, GA, RL) pentru minimizare costuri</li>
+                        <li><strong>Edge Cases:</strong> Testați scenarii extreme (întârzieri, capacități limită, etc.)</li>
+                        <li><strong>Monitoring:</strong> Implementați logging și monitorizare pentru debugging</li>
+                    </ol>
+                </div>
+
+                <div class="tip-box">
+                    <strong><i data-lucide="lightbulb" class="lucide-icon-inline"></i> Sfaturi pentru Dezvoltare:</strong>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Începeți simplu - un algoritm care funcționează e mai bun decât unul complex care dă erori</li>
+                        <li>Logați toate deciziile și costurile - vă ajută la debugging și optimizare</li>
+                        <li>Testați cu date reale din fișierele <code>CSV</code> - simulați scenarii complete</li>
+                        <li>Folosiți version control (<code>Git</code>) - commit frecvent, branch-uri pentru features</li>
+                        <li>Documentați asumpțiile și strategiile - ajută la review și îmbunătățiri</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hints Section -->
+        <section id="hints" class="section red-top">
+            <div class="container">
+                <div class="section-number red">8</div>
+                <h2 class="section-title red-underline">Hints & Tips</h2>
+
+                <div class="vision-box">
+                    <h3>Sfaturi de la Organizatori</h3>
+                    <p>Câteva recomandări valoroase pentru a vă maximiza șansele de succes în această provocare:</p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="users" class="lucide-icon"></i>
+                        </div>
+                        <h4>Planificați și Colaborați</h4>
+                        <p>Începeți cu un plan și împărțiți responsabilitățile între voi. O echipă organizată performează mai bine.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="lightbulb" class="lucide-icon"></i>
+                        </div>
+                        <h4>Multe Soluții Posibile</h4>
+                        <p>Există o multitudine de soluții pentru problema propusă. Nu există o singură cale "corectă".</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="trophy" class="lucide-icon"></i>
+                        </div>
+                        <h4>Nu Trebuie Perfectă</h4>
+                        <p>Soluția voastră nu trebuie să fie perfectă, ci doar <strong>mai bună decât a celorlalți</strong>!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="refresh-cw" class="lucide-icon"></i>
+                        </div>
+                        <h4>Gândiți Turn-Based</h4>
+                        <p>Nu încercați să rezolvați problema ca și cum ați avea toate evenimentele de la început. Jocul este <strong>turn-based</strong>!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="code" class="lucide-icon"></i>
+                        </div>
+                        <h4>Studiați Codul de Evaluare</h4>
+                        <p>Codul aplicației de evaluare vă poate ajuta în înțelegerea regulilor și mecanicilor jocului.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="git-commit" class="lucide-icon"></i>
+                        </div>
+                        <h4>Commit Des</h4>
+                        <p>Dați <code>commit & push</code> în git repo cât mai des. Nu așteptați până la sfârșitul timpului alocat!</p>
+                    </div>
+                </div>
+
+                <div class="warning-box red">
+                    <h4><i data-lucide="alert-triangle" class="lucide-icon-inline"></i> Important!</h4>
+                    <p>Nu vă blocați pe o singură abordare. Dacă ceva nu funcționează, pivotați rapid. Timpul este limitat și adaptabilitatea este cheia succesului!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scoring Section -->
+        <section id="scoring" class="section scoring-section">
+            <div class="container">
+                <div class="section-number">9</div>
+                <h2 class="section-title">Sistem de Scoring</h2>
+
+                <!-- Competition Structure Overview -->
+                <div class="scoring-overview">
+                    <div class="scoring-flow">
+                        <div class="scoring-flow-item">
+                            <div class="scoring-flow-icon">
+                                <i data-lucide="users"></i>
+                            </div>
+                            <div class="scoring-flow-content">
+                                <h4>20 Echipe</h4>
+                                <p>Participante</p>
+                            </div>
+                        </div>
+                        <div class="scoring-flow-arrow">
+                            <i data-lucide="chevron-right"></i>
+                        </div>
+                        <div class="scoring-flow-item highlight-blue">
+                            <div class="scoring-flow-icon">
+                                <i data-lucide="calculator"></i>
+                            </div>
+                            <div class="scoring-flow-content">
+                                <h4>Etapa 1</h4>
+                                <p>Clasament Automat</p>
+                            </div>
+                        </div>
+                        <div class="scoring-flow-arrow">
+                            <i data-lucide="chevron-right"></i>
+                        </div>
+                        <div class="scoring-flow-item highlight-gold">
+                            <div class="scoring-flow-icon">
+                                <i data-lucide="message-circle"></i>
+                            </div>
+                            <div class="scoring-flow-content">
+                                <h4>Top 8</h4>
+                                <p>Interviuri Juriu</p>
+                            </div>
+                        </div>
+                        <div class="scoring-flow-arrow">
+                            <i data-lucide="chevron-right"></i>
+                        </div>
+                        <div class="scoring-flow-item highlight-green">
+                            <div class="scoring-flow-icon">
+                                <i data-lucide="trophy"></i>
+                            </div>
+                            <div class="scoring-flow-content">
+                                <h4>Câștigători</h4>
+                                <p>Clasament Final</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two Stages Grid -->
+                <div class="scoring-stages-grid">
+                    <!-- Stage 1 -->
+                    <div class="scoring-stage stage-1">
+                        <div class="stage-header">
+                            <div class="stage-number">1</div>
+                            <div class="stage-title">
+                                <h3>Clasament Automat</h3>
+                                <p>Toate cele 20 de echipe</p>
+                            </div>
+                        </div>
+
+                        <div class="stage-content">
+                            <div class="formula-highlight">
+                                <div class="formula-label">Formula Scorului Tehnic:</div>
+                                <code>Cost Total = Costuri Operaționale + Penalități în Joc + Penalități End-Game</code>
+                            </div>
+
+                            <div class="scoring-components">
+                                <div class="component-group">
+                                    <h5><i data-lucide="settings"></i> Costuri Operaționale</h5>
+                                    <ul>
+                                        <li>Kit Loading Cost</li>
+                                        <li>Kit Movement Cost</li>
+                                        <li>Kit Processing Cost</li>
+                                        <li>Kit Purchasing Cost</li>
+                                    </ul>
+                                </div>
+                                <div class="component-group penalties">
+                                    <h5><i data-lucide="alert-triangle"></i> Penalități în Joc</h5>
+                                    <ul>
+                                        <li>Understock / Overstock</li>
+                                        <li>Plane Overload</li>
+                                        <li>Unfulfilled Passengers</li>
+                                        <li>Invalid Flight</li>
+                                    </ul>
+                                </div>
+                                <div class="component-group penalties">
+                                    <h5><i data-lucide="flag"></i> Penalități End-Game</h5>
+                                    <ul>
+                                        <li>Remaining Stocks</li>
+                                        <li>In Process Kits</li>
+                                        <li>Uncovered Flights</li>
+                                        <li>Early Stop (×10)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="stage-result">
+                                <i data-lucide="arrow-right"></i>
+                                <span><strong>Rezultat:</strong> Clasament după Cost Total (cel mai mic = Loc 1)</span>
+                            </div>
+                            <div class="stage-result advancement">
+                                <i data-lucide="trending-up"></i>
+                                <span><strong>Top 8 echipe</strong> avansează la Etapa 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2 -->
+                    <div class="scoring-stage stage-2">
+                        <div class="stage-header">
+                            <div class="stage-number">2</div>
+                            <div class="stage-title">
+                                <h3>Interviuri Juriu</h3>
+                                <p>Doar Top 8 echipe</p>
+                            </div>
+                        </div>
+
+                        <div class="stage-content">
+                            <div class="criteria-list">
+                                <div class="criterion">
+                                    <div class="criterion-header">
+                                        <span class="criterion-name">Calitatea Soluției Tehnice</span>
+                                        <span class="criterion-points">25p</span>
+                                    </div>
+                                    <div class="criterion-bar">
+                                        <div class="criterion-fill" style="width: 25%;"></div>
+                                    </div>
+                                    <p class="criterion-desc">Arhitectură, algoritmi, eficiență, cod curat</p>
+                                </div>
+
+                                <div class="criterion">
+                                    <div class="criterion-header">
+                                        <span class="criterion-name">Înțelegerea Problemei</span>
+                                        <span class="criterion-points">25p</span>
+                                    </div>
+                                    <div class="criterion-bar">
+                                        <div class="criterion-fill" style="width: 25%;"></div>
+                                    </div>
+                                    <p class="criterion-desc">Trade-off-uri, mecanici, constrângeri critice</p>
+                                </div>
+
+                                <div class="criterion">
+                                    <div class="criterion-header">
+                                        <span class="criterion-name">Inovație și Creativitate</span>
+                                        <span class="criterion-points">20p</span>
+                                    </div>
+                                    <div class="criterion-bar">
+                                        <div class="criterion-fill" style="width: 20%;"></div>
+                                    </div>
+                                    <p class="criterion-desc">Originalitate, soluții neconvenționale, optimizări</p>
+                                </div>
+
+                                <div class="criterion">
+                                    <div class="criterion-header">
+                                        <span class="criterion-name">User eXperience (UX)</span>
+                                        <span class="criterion-points">15p</span>
+                                    </div>
+                                    <div class="criterion-bar">
+                                        <div class="criterion-fill" style="width: 15%;"></div>
+                                    </div>
+                                    <p class="criterion-desc">Interfață, ușurință în utilizare, vizualizări, feedback</p>
+                                </div>
+
+                                <div class="criterion">
+                                    <div class="criterion-header">
+                                        <span class="criterion-name">Prezentare și Comunicare</span>
+                                        <span class="criterion-points">15p</span>
+                                    </div>
+                                    <div class="criterion-bar">
+                                        <div class="criterion-fill" style="width: 15%;"></div>
+                                    </div>
+                                    <p class="criterion-desc">Claritate, răspunsuri, demonstrație, argumentare</p>
+                                </div>
+
+                                <div class="criterion total">
+                                    <div class="criterion-header">
+                                        <span class="criterion-name">TOTAL</span>
+                                        <span class="criterion-points">100p</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Score Calculation -->
+                <div class="final-score-section">
+                    <h3><i data-lucide="award"></i> Calculul Scorului Final</h3>
+
+                    <div class="final-score-grid">
+                        <div class="score-component">
+                            <div class="score-weight">50%</div>
+                            <div class="score-label">Punctaj Etapa 1</div>
+                            <div class="score-detail">
+                                <table class="points-table">
+                                    <tr><td>Loc 1</td><td>50p</td></tr>
+                                    <tr><td>Loc 2</td><td>45p</td></tr>
+                                    <tr><td>Loc 3</td><td>40p</td></tr>
+                                    <tr><td>Loc 4</td><td>35p</td></tr>
+                                    <tr><td>Loc 5</td><td>30p</td></tr>
+                                    <tr><td>Loc 6</td><td>25p</td></tr>
+                                    <tr><td>Loc 7</td><td>20p</td></tr>
+                                    <tr><td>Loc 8</td><td>15p</td></tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="score-plus">+</div>
+
+                        <div class="score-component">
+                            <div class="score-weight">50%</div>
+                            <div class="score-label">Punctaj Etapa 2</div>
+                            <div class="score-detail">
+                                <p>Scorul din interviu (max 100p) × 0.5</p>
+                                <p class="score-max">Maximum: 50 puncte</p>
+                            </div>
+                        </div>
+
+                        <div class="score-equals">=</div>
+
+                        <div class="score-component final">
+                            <div class="score-weight">SCOR FINAL</div>
+                            <div class="score-label">Maximum 100 puncte</div>
+                        </div>
+                    </div>
+
+                    <div class="tiebreaker-box">
+                        <h4><i data-lucide="scale"></i> Departajare (în caz de egalitate)</h4>
+                        <ol>
+                            <li>Scorul mai mare din Etapa 2 (Interviuri)</li>
+                            <li>Costul Total mai mic din Etapa 1</li>
+                            <li>Criteriul "Inovație și Creativitate"</li>
+                            <li>Decizia finală a juriului</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Prizes -->
+                <div class="prizes-section">
+                    <h3><i data-lucide="gift"></i> Premii</h3>
+                    <div class="prizes-grid">
+                        <div class="prize prize-gold">
+                            <div class="prize-icon">🥇</div>
+                            <div class="prize-place">Locul 1</div>
+                            <div class="prize-desc">Premiul I + Certificat</div>
+                        </div>
+                        <div class="prize prize-silver">
+                            <div class="prize-icon">🥈</div>
+                            <div class="prize-place">Locul 2</div>
+                            <div class="prize-desc">Premiul II + Certificat</div>
+                        </div>
+                        <div class="prize prize-bronze">
+                            <div class="prize-icon">🥉</div>
+                            <div class="prize-place">Locul 3</div>
+                            <div class="prize-desc">Premiul III + Certificat</div>
+                        </div>
+                        <div class="prize prize-mention">
+                            <div class="prize-icon">📜</div>
+                            <div class="prize-place">Locurile 4-7</div>
+                            <div class="prize-desc">Mențiune + Certificat</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section faq-section-prominent">
+            <div class="container">
+                <!-- FAQ Hero Banner -->
+                <div class="faq-hero-banner">
+                    <div class="faq-hero-content">
+                        <div class="faq-hero-icon">
+                            <i data-lucide="help-circle"></i>
+                            <span class="faq-section-number">10</span>
+                        </div>
+                        <div class="faq-hero-text">
+                            <h2>Întrebări Frecvente (FAQ)</h2>
+                            <p>Tot ce trebuie să știi despre provocare - răspunsuri rapide la cele mai comune întrebări</p>
+                        </div>
+                        <div class="faq-hero-stats">
+                            <div class="faq-stat">
+                                <span class="faq-stat-number">7</span>
+                                <span class="faq-stat-label">Categorii</span>
+                            </div>
+                            <div class="faq-stat">
+                                <span class="faq-stat-number">25+</span>
+                                <span class="faq-stat-label">Întrebări</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Navigation -->
+                <div class="faq-category-nav">
+                    <button class="faq-category-btn active" data-category="concepte">
+                        <i data-lucide="book-open"></i>
+                        Concepte
+                    </button>
+                    <button class="faq-category-btn" data-category="retea">
+                        <i data-lucide="network"></i>
+                        Rețea
+                    </button>
+                    <button class="faq-category-btn" data-category="zboruri">
+                        <i data-lucide="plane"></i>
+                        Zboruri
+                    </button>
+                    <button class="faq-category-btn" data-category="kituri">
+                        <i data-lucide="package"></i>
+                        Kituri
+                    </button>
+                    <button class="faq-category-btn red-active" data-category="costuri">
+                        <i data-lucide="calculator"></i>
+                        Costuri
+                    </button>
+                    <button class="faq-category-btn" data-category="api">
+                        <i data-lucide="code"></i>
+                        API
+                    </button>
+                    <button class="faq-category-btn" data-category="strategie">
+                        <i data-lucide="lightbulb"></i>
+                        Strategie
+                    </button>
+                </div>
+
+                <!-- Category 1: Concepte de Bază -->
+                <div class="faq-category-content active" data-category="concepte">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <i data-lucide="book-open"></i>
+                        </div>
+                        <h3 class="faq-category-title">Concepte de Bază</h3>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce este un "Rotable"?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Un <strong>rotable</strong> este un articol reutilizabil folosit pentru pasageri la bordul unui avion: seturi de tacâmuri, farfurii, perne, pături, căști audio. Se așteaptă ca acestea să fie procesate la destinație și reutilizate pentru zboruri ulterioare.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce este un "Rotable Kit"?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Un <strong>Rotable Kit</strong> este un pachet complet de rotables specific pentru o clasă de călătorie. Există un singur tip de kit pentru fiecare clasă și zbor, iar kiturile pentru o clasă sunt identice indiferent de tipul avionului sau durata zborului.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Care sunt cele 4 clase de pasageri?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Există <strong>4 clase de pasageri</strong>, fiecare cu propriul tip de kit:</p>
+                            <ul>
+                                <li><code>FIRST</code> - Prima Clasă</li>
+                                <li><code>BUSINESS</code> - Business</li>
+                                <li><code>PREMIUM_ECONOMY</code> - Economy Premium</li>
+                                <li><code>ECONOMY</code> - Economy</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce trebuie să optimizez în această provocare?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Obiectivul este să <strong>minimizați costul total</strong> = Costuri Operaționale + Penalități. Echipa cu cel mai mic cost total câștigă!</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce este o "rundă" în joc?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>O <strong>rundă</strong> reprezintă o oră de timp simulat. Jocul are <strong>720 de runde</strong> (30 zile × 24 ore). În fiecare rundă decideți câte kituri să încărcați pe zboruri și câte să comandați la HUB1.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Rețea & Aeroporturi -->
+                <div class="faq-category-content" data-category="retea">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <i data-lucide="network"></i>
+                        </div>
+                        <h3 class="faq-category-title">Rețea & Aeroporturi</h3>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce este modelul "Hub-and-Spoke"?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Un model de organizare cu un singur <strong>aeroport central (HUB)</strong> și multiple <strong>aeroporturi outstation</strong>. Zborurile sunt doar între HUB și outstations - nu există zboruri directe între două outstations.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Care este diferența dintre HUB și Outstation?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>HUB (HUB1):</strong> Aeroportul principal - aici se fac operațiuni critice, sunt bazate avioanele, și este <strong>singura locație unde se pot comanda kituri noi</strong>.</p>
+                            <p><strong>Outstation:</strong> Aeroport cu suport limitat - avioanele doar sosesc și fac turnaround. Nu se pot comanda kituri noi aici.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce parametri are fiecare aeroport?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Fiecare aeroport are: <strong>capacitate de stocare</strong>, <strong>cost de loading</strong>, <strong>cost de procesare</strong>, <strong>timp de procesare</strong>, și <strong>stocuri inițiale</strong>. Datele sunt în <code>airports_with_stocks.csv</code>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Zboruri & Timing -->
+                <div class="faq-category-content" data-category="zboruri">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <i data-lucide="plane"></i>
+                        </div>
+                        <h3 class="faq-category-title">Zboruri & Timing</h3>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Când primesc informații despre un zbor?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Informațiile vin în 3 momente:</p>
+                            <ul>
+                                <li><code>SCHEDULED</code> (24h înainte) - date planificate</li>
+                                <li><code>CHECKED_IN</code> (1h înainte) - date actuale de plecare</li>
+                                <li><code>LANDED</code> (la sosire) - date finale</li>
+                            </ul>
+                            <div class="faq-warning">
+                                <strong>Atenție:</strong> Niciun zbor nu pleacă în ziua 0 înainte de ora 4!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Pot să modific încărcarea kiturilor după ce am trimis-o?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Da!</strong> Sunt permise modificări multiple ale încărcărilor până la momentul decolării. Odată ce zborul a decolat, nu mai puteți modifica.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce este un "Turnaround"?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Turnaround</strong> = operațiunile între aterizare și decolare (debarcare, descărcare, curățenie, încărcare, îmbarcare). Au loc <strong>doar la outstations</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Zborurile pot avea întârzieri sau variații?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Da!</strong> Zborurile pot avea întârzieri, distanță mai mare decât planificată, și variații în numărul de pasageri. Algoritmul trebuie să gestioneze aceste incertitudini.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: Kituri & Stocuri -->
+                <div class="faq-category-content" data-category="kituri">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <i data-lucide="package"></i>
+                        </div>
+                        <h3 class="faq-category-title">Kituri & Stocuri</h3>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>De unde pot cumpăra kituri noi?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Kiturile noi pot fi comandate <strong>doar la HUB1</strong>. Comenzile au un <strong>lead-time</strong> - kiturile nu sunt disponibile imediat!</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Kiturile folosite sunt disponibile imediat pentru reutilizare?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Nu!</strong> Kiturile necesită procesare la destinație.</p>
+                            <div class="faq-warning">
+                                <strong>Atenție critică:</strong> Timpul de procesare este de obicei <strong>mai lung</strong> decât turnaround-ul avionului. Kiturile de pe zborul dus NU vor fi disponibile pentru zborul de retur!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce atribute are fiecare tip de kit?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Fiecare tip de kit are: <strong>Cost</strong> (pentru înlocuire/penalități), <strong>Greutate</strong> (pentru cost transport), <strong>Lead Time</strong> (timp livrare). Valori în <code>KitType.java</code>.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Capacitățile de kituri pe avion sunt globale sau per clasă?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sunt <strong>specifice per clasă</strong>, nu globale. Nu puteți folosi spațiul First pentru kituri Business - fiecare clasă are spațiul dedicat.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 5: Costuri & Penalități -->
+                <div class="faq-category-content" data-category="costuri">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <i data-lucide="calculator"></i>
+                        </div>
+                        <h3 class="faq-category-title">Costuri & Penalități</h3>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Cum se calculează costul total?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-highlight">
+                                <code>Cost Total = Cost Operațional + Cost Penalități</code>
+                            </div>
+                            <p>Costul este cumulativ pe toată durata sesiunii.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Care sunt costurile operaționale?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <ul>
+                                <li><strong>Kit Loading Cost</strong> - încărcare (specific aeroportului)</li>
+                                <li><strong>Kit Movement Cost</strong> - transport (distanță × fuel × greutate)</li>
+                                <li><strong>Kit Processing Cost</strong> - procesare la destinație</li>
+                                <li><strong>Kit Purchasing Cost</strong> - achiziție kituri noi la HUB1</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce penalități pot primi în timpul jocului?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <ul>
+                                <li><strong>Understock</strong> - stoc negativ la aeroport</li>
+                                <li><strong>Overstock</strong> - depășire capacitate stocare</li>
+                                <li><strong>Plane Overload</strong> - kituri > capacitate avion</li>
+                                <li><strong>Unfulfilled Passengers</strong> - pasageri fără kit</li>
+                                <li><strong>Invalid Flight</strong> - referință invalidă sau moment greșit</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce se întâmplă dacă opresc sesiunea mai devreme?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Va fi <strong>puternic penalizată</strong>. Dacă opriți în ultimele 24 de ore, penalitățile sunt înmulțite cu <strong>10</strong>!</p>
+                            <div class="faq-warning">
+                                <strong>Atenție:</strong> Oprirea este destinată doar pentru probleme tehnice. Utilizarea abuzivă va fi monitorizată!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 6: API & Tehnic -->
+                <div class="faq-category-content" data-category="api">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <i data-lucide="code"></i>
+                        </div>
+                        <h3 class="faq-category-title">API & Tehnic</h3>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce cerințe tehnice am pentru a rula local?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Aveți nevoie de <code>Java 25</code>, <code>Maven</code>, <code>Git</code>.</p>
+                            <div class="faq-highlight">
+                                <code>mvn spring-boot:run -Dspring-boot.run.profiles=local</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Cum mă autentific la API?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Prin header-ul <code>API-KEY</code>. Local: cheile din <code>teams.csv</code>. Evaluare: API-KEY separat.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Care este diferența dintre HTTP 400 și penalitate?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>HTTP 400</strong> = cerere respinsă (JSON invalid, UUID invalid, valori în afara intervalului).</p>
+                            <p><strong>HTTP 200 + Penalitate</strong> = cerere acceptată dar cu penalizare (ID zbor inexistent, moment greșit).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce fișiere CSV sunt furnizate?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <ul>
+                                <li><code>flight_plan.csv</code> - programul de zboruri</li>
+                                <li><code>aircraft_types.csv</code> - tipuri avioane și capacități</li>
+                                <li><code>airports_with_stocks.csv</code> - aeroporturi cu stocuri și costuri</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 7: Strategie -->
+                <div class="faq-category-content" data-category="strategie">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <i data-lucide="lightbulb"></i>
+                        </div>
+                        <h3 class="faq-category-title">Strategie</h3>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Trebuie să am toate evenimentele de la început?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Nu!</strong> Jocul este <strong>turn-based</strong>. Primiți informații progresiv (24h și 1h înainte). Algoritmul trebuie să se adapteze la informațiile disponibile în fiecare rundă.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Soluția mea trebuie să fie perfectă?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Nu!</strong> Soluția trebuie doar să fie <strong>mai bună decât a celorlalți</strong>! Există multe abordări valide.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Codul de evaluare mă poate ajuta?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Da!</strong> Studiați <code>PenaltyFactors.java</code> și <code>KitType.java</code> pentru a înțelege regulile și mecanicile.</p>
+                            <div class="faq-warning">
+                                <strong>Atenție:</strong> Codul vă poate și încurca dacă nu îl înțelegeți corect!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Ce fac dacă abordarea mea nu funcționează?</h4>
+                            <i data-lucide="chevron-down" class="faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Pivotați rapid!</strong> Timpul este limitat, adaptabilitatea e cheia. Un algoritm simplu care funcționează e mai bun decât unul complex care dă erori.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="container">
+                <div class="section-number">11</div>
+                <h2 class="section-title">Resurse & Suport</h2>
+                
+                <div class="content-section">
+                    <h3>Materiale Disponibile</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="github" class="lucide-icon"></i>
+                            </div>
+                            <h4>Repository GitHub</h4>
+                            <p>Cod sursă complet, exemple, fișiere <code>CSV</code> cu date inițiale, documentație tehnică</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="book-open" class="lucide-icon"></i>
+                            </div>
+                            <h4>Documentație API</h4>
+                            <p><code>OpenAPI</code>/<code>Swagger UI</code> cu toate endpoint-urile, parametrii, exemple de cereri/răspunsuri</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="file-code" class="lucide-icon"></i>
+                            </div>
+                            <h4>Exemple de Soluții</h4>
+                            <p>Algoritmi de bază, strategii simple, cod starter pentru inspirație</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="help-circle" class="lucide-icon"></i>
+                            </div>
+                            <h4>FAQ & Troubleshooting</h4>
+                            <p>Răspunsuri la întrebări frecvente, soluții pentru probleme comune</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="challenges-box">
+                    <h3>Canale de Suport</h3>
+                    <ul class="feature-list">
+                        <li><code>Discord Server</code>: Comunitate de participanți, canal Q&A, discuții tehnice</li>
+                        <li><strong>Email Organizatori:</strong> Pentru întrebări specifice sau probleme tehnice</li>
+                        <li><code>GitHub Issues</code>: Raportați bug-uri, solicitați clarificări despre reguli</li>
+                        <li><strong>Office Hours:</strong> Sesiuni live cu organizatorii pentru ajutor direct</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h3>Resurse de Învățare</h3>
+                    <p>Pentru a vă pregăti mai bine, consultați aceste resurse despre algoritmi de optimizare:</p>
+                </div>
+
+                <!-- Carousel pentru Resurse de Învățare -->
+                <div class="carousel-wrapper">
+                    <button class="carousel-arrow carousel-prev" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="carousel-arrow carousel-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                <div class="carousel-container">
+                    <div class="carousel-tabs">
+                        <button class="carousel-tab active">
+                            <i data-lucide="calculator" class="tab-icon"></i>
+                            Linear Programming
+                        </button>
+                        <button class="carousel-tab">
+                            <i data-lucide="zap" class="tab-icon"></i>
+                            Heuristics
+                        </button>
+                        <button class="carousel-tab">
+                            <i data-lucide="dna" class="tab-icon"></i>
+                            Metaheuristics
+                        </button>
+                        <button class="carousel-tab">
+                            <i data-lucide="brain" class="tab-icon"></i>
+                            Machine Learning
+                        </button>
+                        <button class="carousel-tab">
+                            <i data-lucide="truck" class="tab-icon"></i>
+                            Operations Research
+                        </button>
+                    </div>
+
+                    <div class="carousel-content">
+                        <!-- Slide 1: Linear Programming -->
+                        <div class="carousel-slide active">
+                            <div class="content-section" style="margin: 0;">
+                                <h4><i data-lucide="calculator" class="lucide-icon-inline"></i> Linear Programming</h4>
+                                <p>Simplex, Interior Point Methods - pentru optimizare cu constrângeri</p>
+                                <ul class="resource-links">
+                                    <li><a href="https://towardsdatascience.com/a-beginners-guide-to-linear-programming-and-the-simplex-algorithm-87db017e92b4/" target="_blank" rel="noopener noreferrer">A Beginner's Guide to Linear Programming and the Simplex Algorithm</a> - Towards Data Science</li>
+                                    <li><a href="https://www.gurobi.com/resources/ch5-linear-programming-simplex-method/" target="_blank" rel="noopener noreferrer">Linear Programming with the Simplex Method</a> - Gurobi Optimization</li>
+                                    <li><a href="https://math.libretexts.org/Bookshelves/Applied_Mathematics/Applied_Finite_Mathematics_(Sekhon_and_Bloom)/04:_Linear_Programming_The_Simplex_Method/4.02:_Maximization_By_The_Simplex_Method" target="_blank" rel="noopener noreferrer">Maximization By The Simplex Method</a> - Mathematics LibreTexts</li>
+                                    <li><a href="https://web.stanford.edu/class/msande310/lecture09.pdf" target="_blank" rel="noopener noreferrer">Stanford MS&E310 - The Simplex Method</a> - Stanford University (PDF)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2: Heuristics -->
+                        <div class="carousel-slide">
+                            <div class="content-section" style="margin: 0;">
+                                <h4><i data-lucide="zap" class="lucide-icon-inline"></i> Heuristics</h4>
+                                <p>Greedy algorithms, local search - pentru soluții rapide</p>
+                                <ul class="resource-links">
+                                    <li><a href="https://www.geeksforgeeks.org/dsa/introduction-to-greedy-algorithm-data-structures-and-algorithm-tutorials/" target="_blank" rel="noopener noreferrer">Greedy Algorithm Tutorial</a> - GeeksforGeeks</li>
+                                    <li><a href="https://www.geeksforgeeks.org/dsa/greedy-algorithms/" target="_blank" rel="noopener noreferrer">Greedy Algorithms - Complete Guide</a> - GeeksforGeeks</li>
+                                    <li><a href="https://www.baeldung.com/cs/greedy-vs-heuristic-algorithm" target="_blank" rel="noopener noreferrer">Greedy vs. Heuristic Algorithm</a> - Baeldung on Computer Science</li>
+                                    <li><a href="https://www.cambridge.org/core/books/abs/design-of-approximation-algorithms/greedy-algorithms-and-local-search/5CB0128EBCA19A51353C64A425B57FFE" target="_blank" rel="noopener noreferrer">Greedy Algorithms and Local Search</a> - Cambridge University Press</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3: Metaheuristics -->
+                        <div class="carousel-slide">
+                            <div class="content-section" style="margin: 0;">
+                                <h4><i data-lucide="dna" class="lucide-icon-inline"></i> Metaheuristics</h4>
+                                <p>Genetic Algorithms, Simulated Annealing - pentru probleme complexe</p>
+                                <ul class="resource-links">
+                                    <li><a href="https://medium.com/data-science/genetic-algorithm-a-simple-and-intuitive-guide-51c04cc1f9ed" target="_blank" rel="noopener noreferrer">Genetic Algorithm: A Simple and Intuitive Guide</a> - Medium / Towards Data Science</li>
+                                    <li><a href="https://www.baeldung.com/cs/simulated-annealing" target="_blank" rel="noopener noreferrer">Simulated Annealing Explained</a> - Baeldung on Computer Science</li>
+                                    <li><a href="https://web.stanford.edu/group/sisl/k12/optimization/MO-unit2-pdfs/2.15stochastic2annealing,genetic.pdf" target="_blank" rel="noopener noreferrer">Simulated Annealing & Genetic Algorithms</a> - Stanford University (PDF)</li>
+                                    <li><a href="https://link.springer.com/chapter/10.1007/978-3-319-91086-4_8" target="_blank" rel="noopener noreferrer">Next Generation Genetic Algorithms: A User's Guide</a> - SpringerLink</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4: Machine Learning -->
+                        <div class="carousel-slide">
+                            <div class="content-section" style="margin: 0;">
+                                <h4><i data-lucide="brain" class="lucide-icon-inline"></i> Machine Learning</h4>
+                                <p>Reinforcement Learning (Q-learning, Deep RL) - pentru învățare adaptivă</p>
+                                <ul class="resource-links">
+                                    <li><a href="https://www.datacamp.com/tutorial/introduction-q-learning-beginner-tutorial" target="_blank" rel="noopener noreferrer">Introduction to Q-Learning: A Tutorial For Beginners</a> - DataCamp</li>
+                                    <li><a href="https://www.learndatasci.com/tutorials/reinforcement-q-learning-scratch-python-openai-gym/" target="_blank" rel="noopener noreferrer">Reinforcement Q-Learning from Scratch in Python</a> - LearnDataSci</li>
+                                    <li><a href="https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html" target="_blank" rel="noopener noreferrer">Deep Q-Learning (DQN) Tutorial</a> - PyTorch Official</li>
+                                    <li><a href="https://medium.com/@goldengrisha/a-beginners-guide-to-q-learning-understanding-with-a-simple-gridworld-example-2b6736e7e2c9" target="_blank" rel="noopener noreferrer">A Beginner's Guide to Q-Learning</a> - Medium</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5: Operations Research -->
+                        <div class="carousel-slide">
+                            <div class="content-section" style="margin: 0;">
+                                <h4><i data-lucide="truck" class="lucide-icon-inline"></i> Operations Research</h4>
+                                <p>Vehicle Routing, Inventory Management - probleme similare</p>
+                                <ul class="resource-links">
+                                    <li><a href="https://en.wikipedia.org/wiki/Vehicle_routing_problem" target="_blank" rel="noopener noreferrer">Vehicle Routing Problem - Overview</a> - Wikipedia</li>
+                                    <li><a href="https://www.sciencedirect.com/science/article/pii/S2192437620600024" target="_blank" rel="noopener noreferrer">Inventory Routing Problems: An Introduction</a> - ScienceDirect Tutorial</li>
+                                    <li><a href="https://link.springer.com/article/10.1007/s13676-012-0018" target="_blank" rel="noopener noreferrer">Inventory Routing Problems</a> - EURO Journal on Transportation and Logistics</li>
+                                    <li><a href="https://www2.isye.gatech.edu/~ms79/publications/irp.pdf" target="_blank" rel="noopener noreferrer">The Inventory Routing Problem</a> - Georgia Tech (PDF)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-indicator">1 / 5</div>
+                </div>
+                </div>
+
+                <div class="cta-box">
+                    <h3>Gata de Start?</h3>
+                    <p>Clonați repository-ul și începeți să construiți cel mai eficient algoritm de optimizare logistică!</p>
+                    <div class="cta-button-container" style="margin-top: 2rem;">
+                        <a href="#getting-started" class="cta-button red">Începeți Acum</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="sap-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>Provocarea Rotables - HackITAll 2025 | Optimizare Logistică Aviație</p>
+                <div class="footer-credit">
+                    <span>Platformă dezvoltată cu asistența AI folosind</span>
+                    <a href="https://github.com/cline/cline" target="_blank" rel="noopener noreferrer" class="cline-link">
+                        <svg class="cline-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7v10c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5zm0 2.2l8 4v8.3c0 4.5-3.2 8.8-8 10-4.8-1.2-8-5.5-8-10V8.2l8-4z"/>
+                            <path d="M12 6c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 10c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                        <span>Cline</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+
+    <!-- Mermaid.js for diagrams -->
+    <script src="vendor/js/mermaid.min.js"></script>
+
+    <!-- Prism.js for syntax highlighting -->
+    <script src="vendor/js/prism.min.js"></script>
+    <script src="vendor/js/prism-json.min.js"></script>
+    <script src="vendor/js/prism-bash.min.js"></script>
+    <script src="vendor/js/prism-toolbar.min.js"></script>
+    <script src="vendor/js/prism-copy-to-clipboard.min.js"></script>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Add copy buttons to all code blocks
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlocks = document.querySelectorAll('.code-block');
+
+            codeBlocks.forEach(function(block) {
+                const pre = block.querySelector('pre');
+                const code = block.querySelector('code');
+
+                if (pre && code) {
+                    // Create copy button
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'copy-button';
+                    copyButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span>Copy</span>
+                    `;
+
+                    copyButton.addEventListener('click', function() {
+                        const textToCopy = code.textContent;
+
+                        navigator.clipboard.writeText(textToCopy).then(function() {
+                            copyButton.classList.add('copied');
+                            copyButton.querySelector('span').textContent = 'Copied!';
+                            copyButton.querySelector('svg').innerHTML = `
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            `;
+
+                            setTimeout(function() {
+                                copyButton.classList.remove('copied');
+                                copyButton.querySelector('span').textContent = 'Copy';
+                                copyButton.querySelector('svg').innerHTML = `
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                `;
+                            }, 2000);
+                        }).catch(function(err) {
+                            console.error('Failed to copy:', err);
+                        });
+                    });
+
+                    block.appendChild(copyButton);
+                }
+            });
+
+            // Initialize Mermaid diagrams
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'base',
+                themeVariables: {
+                    primaryColor: '#0070f2',
+                    primaryTextColor: '#fff',
+                    primaryBorderColor: '#0054b8',
+                    lineColor: '#6b7280',
+                    secondaryColor: '#e8f4fd',
+                    tertiaryColor: '#f0f9ff'
+                }
+            });
+
+            // Initialize Carousels
+            initCarousels();
+        });
+
+        function initCarousels() {
+            const wrappers = document.querySelectorAll('.carousel-wrapper');
+
+            wrappers.forEach(wrapper => {
+                const carousel = wrapper.querySelector('.carousel-container');
+                const tabs = carousel.querySelectorAll('.carousel-tab');
+                const slides = carousel.querySelectorAll('.carousel-slide');
+                // Arrows are now in the wrapper, not the container
+                const prevBtn = wrapper.querySelector('.carousel-arrow.carousel-prev');
+                const nextBtn = wrapper.querySelector('.carousel-arrow.carousel-next');
+                const indicator = carousel.querySelector('.carousel-indicator');
+
+                let currentIndex = 0;
+
+                function showSlide(index) {
+                    // Update slides
+                    slides.forEach((slide, i) => {
+                        slide.classList.toggle('active', i === index);
+                    });
+
+                    // Update tabs
+                    tabs.forEach((tab, i) => {
+                        tab.classList.toggle('active', i === index);
+                    });
+
+                    // Update navigation
+                    if (prevBtn) prevBtn.disabled = index === 0;
+                    if (nextBtn) nextBtn.disabled = index === slides.length - 1;
+                    if (indicator) indicator.textContent = `${index + 1} / ${slides.length}`;
+
+                    currentIndex = index;
+
+                    // Re-render mermaid diagrams in the active slide if any
+                    const activeSlide = slides[index];
+                    const mermaidDivs = activeSlide.querySelectorAll('.mermaid:not([data-processed])');
+                    if (mermaidDivs.length > 0) {
+                        mermaid.init(undefined, mermaidDivs);
+                    }
+                }
+
+                // Tab click handlers
+                tabs.forEach((tab, index) => {
+                    tab.addEventListener('click', () => showSlide(index));
+                });
+
+                // Navigation button handlers
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        if (currentIndex > 0) showSlide(currentIndex - 1);
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        if (currentIndex < slides.length - 1) showSlide(currentIndex + 1);
+                    });
+                }
+
+                // Initialize first slide
+                showSlide(0);
+            });
+        }
+
+        // FAQ functionality
+        function initFAQ() {
+            // Category navigation
+            const categoryBtns = document.querySelectorAll('.faq-category-btn');
+            const categoryContents = document.querySelectorAll('.faq-category-content');
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const category = btn.getAttribute('data-category');
+
+                    // Update buttons
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    // Update content
+                    categoryContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.getAttribute('data-category') === category) {
+                            content.classList.add('active');
+                        }
+                    });
+
+                    // Re-initialize Lucide icons for the new content
+                    lucide.createIcons();
+                });
+            });
+
+            // FAQ accordion
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    item.classList.toggle('open');
+                });
+            });
+        }
+
+        // Initialize FAQ on DOM ready
+        document.addEventListener('DOMContentLoaded', initFAQ);
+    </script>
+</body>
+</html>
