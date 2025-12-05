@@ -410,6 +410,7 @@ body {
     background: radial-gradient(circle at 50% 0%, rgba(0, 112, 242, 0.1) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .feature-card:hover {
@@ -861,6 +862,7 @@ body {
     background: linear-gradient(90deg, rgba(0, 112, 242, 0.05) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .demo-step:hover {
@@ -951,6 +953,7 @@ body {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .learning-item:hover {
@@ -1176,6 +1179,7 @@ body {
     background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .repo-card:hover {
@@ -1290,6 +1294,7 @@ body {
     background: radial-gradient(circle at 50% 0%, rgba(0, 112, 242, 0.05) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .choice-card:hover {
@@ -1409,6 +1414,7 @@ body {
     background: radial-gradient(circle at 0% 50%, rgba(0, 112, 242, 0.05) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .memorable-item:hover {
@@ -1638,6 +1644,7 @@ body {
     background: radial-gradient(circle at 50% 0%, rgba(0, 112, 242, 0.08) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.5s ease;
+    pointer-events: none;
 }
 
 .timeline-item:hover .timeline-content {
@@ -2023,6 +2030,7 @@ body {
     background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.05) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .presentation-item:hover {
@@ -2127,6 +2135,7 @@ body {
     background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.05) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .eval-good:hover {
@@ -2148,6 +2157,7 @@ body {
     background: radial-gradient(circle at 50% 0%, rgba(239, 68, 68, 0.05) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .eval-bad:hover {
